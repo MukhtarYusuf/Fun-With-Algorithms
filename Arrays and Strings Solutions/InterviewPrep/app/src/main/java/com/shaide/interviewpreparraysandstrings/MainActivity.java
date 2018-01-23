@@ -31,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
         //System.out.println(oneAway(first, second) ? "True" : "False");
         System.out.println(pPermut(third) ? "True" : "False");
         System.out.println(compressString(fourth));
+
+        char[] sentence = {'P','r','a','c',' ','m','a','k','e','s',' ','p','e','r','f'};
+        System.out.println("Before word reversal: ");
+        System.out.println(sentence);
+        reverseWords(sentence);
+        System.out.println("After word reversal: ");
+        System.out.println(sentence);
     }
 
     public void rotate(int[][] mat){
@@ -170,5 +177,45 @@ public class MainActivity extends AppCompatActivity {
             return sb.toString();
         else
             return s;
+    }
+
+    public void reverseWords(char[] arr){
+        if(arr == null)
+            return;
+        int length = arr.length;
+        if(length == 0)
+            return;
+        reverseCharacters(arr);
+        int tail = 0; int i = 0;
+        for(i = 0; i < length; i++){
+            if(arr[i] == ' '){
+                reverseWord(arr, tail, i-1);
+                tail = i+1;
+            }
+            if(i== length-1){
+                reverseWord(arr, tail, i);
+            }
+        }
+    }
+    public void reverseCharacters(char[] charArray){
+        int lower = 0;
+        int upper = charArray.length - 1;
+        while(lower < upper){
+            char temp;
+            temp = charArray[lower];
+            charArray[lower] = charArray[upper];
+            charArray[upper] = temp;
+            lower++; upper--;
+        }
+    }
+    public void reverseWord(char[] cArray, int start, int end){
+        while(start < end){
+            char temp;
+            temp = cArray[start];
+            cArray[start] = cArray[end];
+            cArray[end] = temp;
+            start++;
+            end--;
+        }
     }
 }
