@@ -97,5 +97,65 @@ public class MainActivity extends AppCompatActivity {
 //            System.out.println(sos.pop());
             System.out.println(!sos.isEmpty());
         }
+
+        StacksOfStacks1<Integer> sos1 = new StacksOfStacks1<>();
+        sos1.push(1);
+        sos1.push(2);
+        sos1.push(3);
+        sos1.push(4);
+        sos1.push(5);
+        sos1.push(6);
+        sos1.push(7);
+        sos1.push(8);
+        sos1.push(9);
+        int value = sos1.popAtIndex(1);
+        System.out.println("Popped value: " + value);
+        value = sos1.popAtIndex(1);
+        System.out.println("Popped value: " + value);
+        value = sos1.popAtIndex(2);
+        System.out.println("Popped value: " + value);
+        while(!sos1.isEmpty()){
+            int i = sos1.pop();
+            System.out.println("Popped value: " + i);
+        }
+        java.util.Stack<Integer> someStack = new java.util.Stack<>();
+        someStack.push(5);
+        someStack.push(4);
+        someStack.push(9);
+        someStack.push(3);
+        someStack.push(1);
+        someStack.push(10);
+        someStack.push(20);
+        someStack.push(15);
+
+        sortStack(someStack);
+        while(!someStack.isEmpty())
+            System.out.println("Unsorted stack value: " + someStack.pop());
+
+    }
+
+    public void sortStack(java.util.Stack<Integer> s){
+        if(s == null)
+            return;
+        if(s.isEmpty())
+            return;
+        java.util.Stack<Integer> bStack = new java.util.Stack<>();
+        int temp = 0;
+        while(!s.isEmpty()){
+            if(bStack.isEmpty())
+                bStack.push(s.pop());
+            else {
+                if (s.peek() < bStack.peek()) {
+                    temp = s.pop();
+                    while (!bStack.isEmpty() && temp < bStack.peek()) {
+                        s.push(bStack.pop());
+                    }
+                    bStack.push(temp);
+                } else
+                    bStack.push(s.pop());
+            }
+        }
+        while(!bStack.isEmpty())
+            s.push(bStack.pop());
     }
 }
