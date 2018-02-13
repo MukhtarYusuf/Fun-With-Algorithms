@@ -517,48 +517,4 @@ public class MainActivity extends AppCompatActivity {
         }
         return prev;
     }
-
-    public int firstBadCommit(long[] data){
-        if(data == null)
-            return -1;
-        int length = data.length;
-        if(length == 0)
-            return -1;
-        int lower = 0;
-        int upper = length-1;
-        int mid = 0;
-        boolean bad = false;
-        while(lower != upper){//Not Found
-            mid = (lower + upper)/2;
-            bad = isBad(data[mid]);
-            if(bad)//Check left half
-                upper = mid;
-            else//Check right half
-                lower = mid + 1;
-        }
-        //Check last element
-        bad = isBad(data[lower]);
-        if(bad)//Found
-            return lower;
-        else//Not Found
-            return -1;
-    }
-
-    /*--Test Cases--
-    1. Null or empty array
-    2. All bad odd length e.g. {B, B, B, B, B}
-    3. All bad even length e.g.{B,B,B,B}
-    4. All good odd length e.g. {G,G,G,G,G}
-    5. ALL good even length e.g. {G,G,G,G}
-    6. Bad at end e.g. {G,G,G,G,B}
-    7. Bad at middle e.g. {G,G,B,B,B}
-     */
-
-    public boolean isBad(long number){
-        int randomInt = (int)Math.random();
-        if(randomInt == 0)
-            return false;
-        else
-            return true;
-    }
 }
