@@ -132,6 +132,29 @@ public class MainActivity extends AppCompatActivity {
         while(!someStack.isEmpty())
             System.out.println("Unsorted stack value: " + someStack.pop());
 
+        System.out.println();
+        System.out.println("----------Testing for animal shelter----------");
+        AnimalShelter as = new AnimalShelter();
+        Animal a1 = new Dog("a1");
+        Animal a2 = new Dog("a2");
+        Animal a3 = new Cat("a3");
+        Animal a4 = new Cat("a4");
+        Animal a5 = new Dog("a5");
+
+        as.enqueue(a3);
+        as.enqueue(a2);
+        as.enqueue(a4);
+        as.enqueue(a5);
+        as.enqueue(a1);
+
+
+//        while(!as.isEmpty()){
+//            System.out.println(as.dequeueAny());
+//        }
+        System.out.println(as.dequeueAny());
+        System.out.println(as.dequeueCat());
+        System.out.println(as.dequeueCat());
+        System.out.println(as.dequeueDog());
     }
 
     public void sortStack(java.util.Stack<Integer> s){
