@@ -1,8 +1,9 @@
 package com.mukhtaryusuf.treesandgraphs;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,4 +32,27 @@ public class MainActivity extends AppCompatActivity {
         }
         return false;
     }
+
+    /*
+    2. Minimal Tree
+     */
+    public BinarySearchTree minTree(int[] arr){
+        if(arr == null)
+            return null;
+
+        int length = arr.length;
+        BinarySearchTree bst = new BinarySearchTree();
+        recMinTree(bst, arr, 0, length-1);
+        return bst;
+    }
+
+    public void recMinTree(BinarySearchTree binarySearchTree, int[] a, int lower, int upper){
+        if(lower > upper)
+            return;
+        int mid = (lower + upper)/2;
+        binarySearchTree.insert(a[mid]); //Process midpoint
+        recMinTree(binarySearchTree, a, lower, mid-1); //Process left half
+        recMinTree(binarySearchTree, a, mid+1, upper); //Process right half
+    }
+
 }
