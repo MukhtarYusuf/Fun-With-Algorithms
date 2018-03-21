@@ -55,4 +55,30 @@ public class MainActivity extends AppCompatActivity {
         recMinTree(binarySearchTree, a, mid+1, upper); //Process right half
     }
 
+    /*
+    3. List of Depths
+     */
+    public ArrayList<ArrayList<TreeNode>> listOfDepths(TreeNode root){
+        ArrayList<ArrayList<TreeNode>> result = new ArrayList<>();
+
+        if(root == null)
+            return result;
+
+        ArrayList<TreeNode> parents = new ArrayList<>();
+        parents.add(root);
+
+        while(!parents.isEmpty()){
+            ArrayList<TreeNode> children = new ArrayList<>();
+            result.add(new ArrayList<>(parents));
+            for(TreeNode node : parents){
+                if(node.left != null)
+                    children.add(node.left);
+                if(node.right != null)
+                    children.add(node.right);
+            }
+            parents = children; //Move down one level
+        }
+
+        return result;
+    }
 }
