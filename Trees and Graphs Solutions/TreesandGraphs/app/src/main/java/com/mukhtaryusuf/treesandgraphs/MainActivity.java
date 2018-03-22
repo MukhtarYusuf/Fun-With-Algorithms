@@ -81,4 +81,28 @@ public class MainActivity extends AppCompatActivity {
 
         return result;
     }
+
+    /*
+    4. Check Balanced
+     */
+    //Solution 1 to problem 4: Nested recursive calls
+    public int calcDepth(TreeNode node){
+        if(node == null)
+            return -1;
+        int maxLeft = 1 + calcDepth(node.left);
+        int maxRight = 1 + calcDepth(node.right);
+        return Math.max(maxLeft, maxRight);
+    }
+    public boolean recIsBalanced(TreeNode treeNode){
+        if(treeNode == null)
+            return true;
+
+        int leftDepth = calcDepth(treeNode.left);
+        int rightDepth = calcDepth(treeNode.right);
+        int diff = Math.abs(leftDepth-rightDepth);
+        if(diff > 1) //Not balanced at this node;
+            return false;
+        return recIsBalanced(treeNode.left) && recIsBalanced(treeNode.right);
+    }
+
 }
