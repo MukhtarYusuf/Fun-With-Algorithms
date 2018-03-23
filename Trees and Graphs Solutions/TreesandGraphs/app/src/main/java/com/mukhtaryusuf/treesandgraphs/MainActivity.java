@@ -105,4 +105,21 @@ public class MainActivity extends AppCompatActivity {
         return recIsBalanced(treeNode.left) && recIsBalanced(treeNode.right);
     }
 
+    //Solution 2 to problem 4: Make each node return it's height or an error code for imbalance
+    public int recBalanced(TreeNode node){
+        if(node == null)
+            return -1;
+
+        int leftHeight = recBalanced(node.left); //Height of left subtree
+        int rightHeight = recBalanced(node.right); //Height of right subtree
+        if(leftHeight == Integer.MIN_VALUE || rightHeight == Integer.MIN_VALUE)
+            return Integer.MIN_VALUE;
+
+        int diff = Math.abs(leftHeight - rightHeight);
+        if(diff > 1)
+            return  Integer.MIN_VALUE;
+
+        return 1 + Math.max(leftHeight, rightHeight);
+    }
+
 }
