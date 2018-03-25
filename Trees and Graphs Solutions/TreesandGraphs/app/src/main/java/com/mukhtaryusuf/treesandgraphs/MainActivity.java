@@ -122,4 +122,30 @@ public class MainActivity extends AppCompatActivity {
         return 1 + Math.max(leftHeight, rightHeight);
     }
 
+    public boolean balanced(TreeNode root){
+        return (recBalanced(root) != Integer.MIN_VALUE);
+    }
+
+    /*
+    5. Validate BST
+    */
+    //Solution 1 to problem 5
+    public boolean validateBST(TreeNode node){
+        if(node == null)
+            return true;
+        Integer min = null;
+        Integer max = null;
+        return recValidateBST(node, min, max);
+    }
+    public boolean recValidateBST(TreeNode treeNode, Integer minimum, Integer maximum){
+        if(treeNode == null)
+            return true;
+        if(minimum != null && minimum > treeNode.val)
+            return false;
+        if(maximum != null && treeNode.val > maximum)
+            return false;
+        return recValidateBST(treeNode.left, minimum, treeNode.val) &&
+                recValidateBST(treeNode.right, treeNode.val+1, maximum);
+    }
+
 }
