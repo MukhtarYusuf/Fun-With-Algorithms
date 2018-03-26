@@ -148,4 +148,31 @@ public class MainActivity extends AppCompatActivity {
                 recValidateBST(treeNode.right, treeNode.val+1, maximum);
     }
 
+    /*Solution 2 to problem 5: Construct an array list doing an in-order traversal on the binary tree,
+                               then check if the array list is sorted
+     */
+
+    /*
+    6. In order Successor
+     */
+    public TreeNode findSuccessor(TreeNode node){
+        if(node == null)
+            return null;
+
+        TreeNode cur = node; TreeNode prev = node;
+        if(cur.right != null){
+            cur = cur.right;
+            while(cur != null){
+                prev = cur;
+                cur = cur.left;
+            }
+        }else{
+            cur = cur.parent;
+            while(cur != null && cur.left != prev){//Check
+                prev = cur;
+                cur = cur.parent;
+            }
+        }
+        return cur;
+    }
 }
