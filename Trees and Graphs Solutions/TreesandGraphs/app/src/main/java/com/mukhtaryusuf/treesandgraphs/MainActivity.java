@@ -162,10 +162,8 @@ public class MainActivity extends AppCompatActivity {
         TreeNode cur = node; TreeNode prev = node;
         if(cur.right != null){
             cur = cur.right;
-            while(cur != null){
-                prev = cur;
+            while(cur.left != null)
                 cur = cur.left;
-            }
         }else{
             cur = cur.parent;
             while(cur != null && cur.left != prev){//Check
