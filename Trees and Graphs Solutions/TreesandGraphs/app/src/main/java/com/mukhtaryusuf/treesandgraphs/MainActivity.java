@@ -173,4 +173,15 @@ public class MainActivity extends AppCompatActivity {
         }
         return cur;
     }
+
+    /*
+    7. Build Order
+     */
+
+    //Calling Method For Build Order
+    public ArrayList<GraphNode1> buildOrder(Character[] projects, Character[][] dependencies){
+        Graph graph = new Graph(projects, dependencies);
+        return buildOrder(graph.getNodes());
+    }
+
 }
