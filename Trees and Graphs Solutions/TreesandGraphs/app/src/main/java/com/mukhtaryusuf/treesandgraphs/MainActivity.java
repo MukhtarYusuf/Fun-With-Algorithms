@@ -202,4 +202,13 @@ public class MainActivity extends AppCompatActivity {
             return null;
     }
 
+    //Get Next Node With No Incoming Edges
+    public int getNextNode(ArrayList<GraphNode1> nodes){
+        for(int i = 0; i < nodes.size(); i++){
+            GraphNode1 graphNode1 = nodes.get(i);
+            if(!graphNode1.visited && graphNode1.incoming == 0)
+                return i;
+        }
+        return -1; //Didn't Find Next Node
+    }
 }
