@@ -184,4 +184,22 @@ public class MainActivity extends AppCompatActivity {
         return buildOrder(graph.getNodes());
     }
 
+    //Actual Build Order Method (Topological Sort)
+    public ArrayList<GraphNode1> buildOrder(ArrayList<GraphNode1> nodes){
+        ArrayList<GraphNode1> result = new ArrayList<>();
+        int nextIndex = 0;
+        while((nextIndex = getNextNode(nodes)) != -1){
+            GraphNode1 curNode = nodes.get(nextIndex);
+            curNode.visited = true;
+            result.add(curNode);
+            ArrayList<GraphNode1> children = curNode.children;
+            for(GraphNode1 graphNode1 : children)
+                graphNode1.incoming--;
+        }
+        if(result.size() == nodes.size())//Success
+            return result;
+        else //Failure
+            return null;
+    }
+
 }
