@@ -211,4 +211,26 @@ public class MainActivity extends AppCompatActivity {
         }
         return -1; //Didn't Find Next Node
     }
+
+    /*
+    8. First Common Ancestor
+     */
+    public TreeNode firstCommonAncestor(TreeNode root, TreeNode first, TreeNode second) {
+        if (root == null || first == null || second == null)
+            return null;
+
+        TreeNode cur = root;
+        while (cur != null) {
+            if (recContainsBoth(cur.left, first, second))
+                cur = cur.left;
+            else if (recContainsBoth(cur.right, first, second))
+                cur = cur.right;
+            else if (recContainsBoth(cur, first, second))
+                return cur;
+            else
+                return null;
+        }
+        return null;
+    }
+
 }
