@@ -233,4 +233,18 @@ public class MainActivity extends AppCompatActivity {
         return null;
     }
 
+    public boolean recContainsBoth(TreeNode node, TreeNode fNode, TreeNode sNode){
+        return recContains(node, fNode) && recContains(node, sNode);
+    }
+
+    public boolean recContains(TreeNode node1, TreeNode node2){
+        if(node1 == null)
+            return false;
+
+        boolean contains = recContains(node1.left, node2) || recContains(node1.right, node2);
+        if(node1 == node2)
+            return true;
+
+        return contains;
+    }
 }
