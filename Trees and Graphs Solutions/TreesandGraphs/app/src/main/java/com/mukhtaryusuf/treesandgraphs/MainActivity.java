@@ -247,4 +247,31 @@ public class MainActivity extends AppCompatActivity {
 
         return contains;
     }
+
+    /*
+    9. BST Sequences
+     */
+    public ArrayList<LinkedList<Integer>> bstSequences(TreeNode node){
+        ArrayList<LinkedList<Integer>> results = new ArrayList<>();
+        if(node == null){
+            LinkedList<Integer> result = new LinkedList<>();
+            results.add(result);
+            return results;
+        }
+        LinkedList<Integer> prefix = new LinkedList<>();
+        prefix.add(node.val);
+        ArrayList<LinkedList<Integer>> left = bstSequences(node.left);
+        ArrayList<LinkedList<Integer>> right = bstSequences(node.right);
+
+        for(LinkedList<Integer> first : left){
+            for(LinkedList<Integer> second : right){
+                ArrayList<LinkedList<Integer>> combined = new ArrayList<>();
+                combine(first, second, prefix, combined);
+                results.addAll(combined);
+            }
+        }
+
+        return results;
+    }
+
 }
