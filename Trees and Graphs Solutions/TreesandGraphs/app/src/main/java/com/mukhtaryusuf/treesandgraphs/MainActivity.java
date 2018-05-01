@@ -274,4 +274,27 @@ public class MainActivity extends AppCompatActivity {
         return results;
     }
 
+    public void combine(LinkedList<Integer> f, LinkedList<Integer> s, LinkedList<Integer> p,
+                        ArrayList<LinkedList<Integer>> c){
+
+        if(f.isEmpty() || s.isEmpty()){
+            LinkedList<Integer> result = (LinkedList<Integer>)p.clone();
+            result.addAll(f);
+            result.addAll(s);
+            c.add(result);
+            return;
+        }
+
+        int firstLeft = f.removeFirst();
+        p.add(firstLeft);
+        combine(f,s,p,c);
+        p.removeLast();
+        f.addFirst(firstLeft);
+
+        int firstRight = s.removeFirst();
+        p.add(firstRight);
+        combine(f,s,p,c);
+        p.removeLast();
+        s.addFirst(firstRight);
+    }
 }
