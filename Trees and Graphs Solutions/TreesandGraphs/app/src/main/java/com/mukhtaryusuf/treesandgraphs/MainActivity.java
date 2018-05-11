@@ -297,25 +297,4 @@ public class MainActivity extends AppCompatActivity {
         p.removeLast();
         s.addFirst(firstRight);
     }
-
-    public boolean isSubTree(TreeNode node1, TreeNode node2){
-        if(node1 == null)
-            return false;
-        if(node1 == node2) {
-            if (isEqual(node1, node2))
-                return true;
-        }
-        return isSubTree(node1.left, node2) || isSubTree(node1.right, node2);
-    }
-
-    public boolean isEqual(TreeNode n1, TreeNode n2){
-        if(n1 == null && n2 == null)
-            return true;
-        else if(n1 == null || n2 == null)
-            return false;
-        if(n1 != n2)
-            return false;
-
-        return isEqual(n1.left, n2.left) && isEqual(n1.right, n2.right);
-    }
 }
