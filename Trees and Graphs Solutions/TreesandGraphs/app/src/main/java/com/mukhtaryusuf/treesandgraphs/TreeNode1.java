@@ -16,4 +16,16 @@ public class TreeNode1 {
         this.val = val;
         this.size = 1;
     }
+
+    public TreeNode1 getRandomNode(){
+        Random rand = new Random();
+        int index = rand.nextInt(size) + 1;
+
+        if(index == size)
+            return this;
+        else if(left != null && index <= left.size)
+            return left.getRandomNode();
+        else
+            return right.getRandomNode();
+    }
 }
