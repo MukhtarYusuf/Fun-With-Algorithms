@@ -28,4 +28,20 @@ public class TreeNode1 {
         else
             return right.getRandomNode();
     }
+
+    public void insert(int v){
+        if(v <= val){
+            if(left == null)
+                left = new TreeNode1(v);
+            else
+                left.insert(v);
+        }else{
+            if(right == null)
+                right = new TreeNode1(v);
+            else
+                right.insert(v);
+        }
+        size++;
+    }
+
 }
