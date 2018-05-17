@@ -44,4 +44,12 @@ public class TreeNode1 {
         size++;
     }
 
+    public TreeNode1 find(int v){
+        if(val == v)
+            return this;
+        else if(v <= val)
+            return (left == null) ? null : left.find(v);
+        else
+            return (right == null) ? null : right.find(v);
+    }
 }
