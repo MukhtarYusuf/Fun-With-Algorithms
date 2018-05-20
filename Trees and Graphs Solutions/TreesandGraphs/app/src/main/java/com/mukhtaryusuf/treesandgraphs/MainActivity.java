@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class MainActivity extends AppCompatActivity {
@@ -298,6 +299,9 @@ public class MainActivity extends AppCompatActivity {
         s.addFirst(firstRight);
     }
 
+    /*
+    10. Check Subtree
+     */
     public boolean isSubTree(TreeNode node1, TreeNode node2){
         if(node1 == null)
             return false;
@@ -318,4 +322,20 @@ public class MainActivity extends AppCompatActivity {
 
         return isEqual(n1.left, n2.left) && isEqual(n1.right, n2.right);
     }
+
+    /*
+    12. Paths with Sum
+     */
+
+    //Solution 1: Nested Recursion.
+    public int noOfPaths(TreeNode n, int sum){
+        if(n == null)
+            return 0;
+
+        int paths = pathsFromNode(n, sum, 0);
+        int leftPaths = noOfPaths(n.left, sum);
+        int rightPaths = noOfPaths(n.right, sum);
+        return paths + leftPaths + rightPaths;
+    }
+
 }
