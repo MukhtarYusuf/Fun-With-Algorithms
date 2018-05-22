@@ -338,4 +338,18 @@ public class MainActivity extends AppCompatActivity {
         return paths + leftPaths + rightPaths;
     }
 
+    public int pathsFromNode(TreeNode node, int sum, int cumSum){
+        if(node == null)
+            return 0;
+        cumSum += node.val;
+        int pathCount = 0;
+        if(cumSum == sum)
+            pathCount++;
+
+        pathCount += pathsFromNode(node.left, sum, cumSum);
+        pathCount += pathsFromNode(node.right, sum, cumSum);
+
+        return pathCount;
+    }
+
 }
