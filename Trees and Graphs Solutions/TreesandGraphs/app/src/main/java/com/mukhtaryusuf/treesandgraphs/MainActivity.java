@@ -352,4 +352,10 @@ public class MainActivity extends AppCompatActivity {
         return pathCount;
     }
 
+    //Solution 2: Using HashMap
+    public int noOfSumPaths(TreeNode root, int sum){
+        HashMap<Integer, Integer> paths = new HashMap<>();
+        return recNoOfSumPaths(root, sum, 0, paths);
+    }
+
 }
