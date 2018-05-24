@@ -358,4 +358,22 @@ public class MainActivity extends AppCompatActivity {
         return recNoOfSumPaths(root, sum, 0, paths);
     }
 
+    public int recNoOfSumPaths(TreeNode node, int targetSum, int cSum, HashMap<Integer, Integer> sums){
+        if(node == null)
+            return 0;
+
+        cSum += node.val;
+        int diff = cSum - targetSum;
+        int pathCount = sums.getOrDefault(diff, 0);
+        if(cSum == targetSum)
+            pathCount++;
+
+        updateSums(sums, cSum, true);
+        pathCount += recNoOfSumPaths(node.left, targetSum, cSum, sums);
+        pathCount += recNoOfSumPaths(node.right, targetSum, cSum, sums);
+        updateSums(sums, cSum, false);
+
+        return pathCount;
+    }
+
 }
