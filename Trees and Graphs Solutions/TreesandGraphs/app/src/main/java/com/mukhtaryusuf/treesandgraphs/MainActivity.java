@@ -376,4 +376,13 @@ public class MainActivity extends AppCompatActivity {
         return pathCount;
     }
 
+    public void updateSums(HashMap<Integer, Integer> hm, int sum, boolean isAdd){
+        int update = isAdd ? 1 : -1;
+        int oldValue = hm.getOrDefault(sum, 0);
+        oldValue += update;
+        if(oldValue == 0)
+            hm.remove(sum);
+        else
+            hm.put(sum, oldValue);
+    }
 }
