@@ -25,5 +25,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    public String readAllFromFile(){
+        StringBuilder result = new StringBuilder();
+        Context context = getApplicationContext();
+        AssetManager assetManager = context.getAssets();
+        try {
+            InputStream fileInputStream = assetManager.open("p054_poker.txt");
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
+            String line;
+            while((line = bufferedReader.readLine()) != null){
+                result.append(line + "\n");
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return result.toString();
+    }
     }
 }
