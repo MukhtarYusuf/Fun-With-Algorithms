@@ -42,5 +42,12 @@ public class MainActivity extends AppCompatActivity {
 
         return result.toString();
     }
+    //1. Scoring for Royal Flush
+    public int scoreForRoyalFlush(String[] playerHand){
+        final int royalFlushScore = 900;
+        boolean isRoyalFlush = false;
+        isRoyalFlush = isSameSuit(playerHand) && isRoyalRanks(playerHand);
+        return isRoyalFlush ? royalFlushScore : 0;
+    }
     }
 }
