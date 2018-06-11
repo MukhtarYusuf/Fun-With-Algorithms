@@ -49,5 +49,14 @@ public class MainActivity extends AppCompatActivity {
         isRoyalFlush = isSameSuit(playerHand) && isRoyalRanks(playerHand);
         return isRoyalFlush ? royalFlushScore : 0;
     }
+    //2. Scoring for Straight Flush
+    public int scoreForStraightFlush(String[] playerHand){
+        int straightFlushScore = 800;
+        int weightedScore = 0;
+        boolean isStraightFlush = false;
+        isStraightFlush = isSameSuit(playerHand) && ((weightedScore = calcConsecutiveScore(playerHand)) > 0);
+        straightFlushScore += weightedScore;
+        return isStraightFlush ? straightFlushScore : 0;
+    }
     }
 }
