@@ -58,5 +58,12 @@ public class MainActivity extends AppCompatActivity {
         straightFlushScore += weightedScore;
         return isStraightFlush ? straightFlushScore : 0;
     }
+    //3. Scoring for Four of a Kind
+    public int scoreForFourOfAKind(String[] playerHand){
+        int fourOfAKindScore = 700;
+        int weightedScore = calcNOfAKindScore(playerHand,4,1);
+        fourOfAKindScore += weightedScore;
+        return (weightedScore > 0) ? fourOfAKindScore : 0;
+    }
     }
 }
