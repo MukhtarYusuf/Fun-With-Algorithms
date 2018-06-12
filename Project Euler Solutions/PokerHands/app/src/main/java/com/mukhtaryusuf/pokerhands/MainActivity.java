@@ -65,5 +65,14 @@ public class MainActivity extends AppCompatActivity {
         fourOfAKindScore += weightedScore;
         return (weightedScore > 0) ? fourOfAKindScore : 0;
     }
+    //4. Scoring for Full House
+    public int scoreForFullHouse(String[] playerHand){
+        int fullHouseScore = 600;
+        int weightedScore1 = calcNOfAKindScore(playerHand,3,1);
+        int weightedScore2 = calcNOfAKindScore(playerHand,2,1);
+        fullHouseScore += weightedScore1;
+
+        return (weightedScore1 > 0 && weightedScore2 > 0) ? fullHouseScore : 0;
+    }
     }
 }
