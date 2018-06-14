@@ -74,5 +74,11 @@ public class MainActivity extends AppCompatActivity {
 
         return (weightedScore1 > 0 && weightedScore2 > 0) ? fullHouseScore : 0;
     }
+    //5. Scoring for Flush
+    public int scoreForFlush(String[] playerHand){
+        final int flushScore = 500;
+        boolean isSameSuit = isSameSuit(playerHand);
+        return isSameSuit ? flushScore : 0;
+    }
     }
 }
