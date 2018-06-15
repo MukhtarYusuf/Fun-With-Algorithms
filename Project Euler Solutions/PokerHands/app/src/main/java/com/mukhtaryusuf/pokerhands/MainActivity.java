@@ -80,5 +80,12 @@ public class MainActivity extends AppCompatActivity {
         boolean isSameSuit = isSameSuit(playerHand);
         return isSameSuit ? flushScore : 0;
     }
+    //6. Scoring for Straight
+    public int scoreForStraight(String[] playerHand){
+        int straightScore = 400;
+        int weightedScore = calcConsecutiveScore(playerHand);
+        straightScore += weightedScore;
+        return (weightedScore > 0) ? straightScore : 0;
+    }
     }
 }
