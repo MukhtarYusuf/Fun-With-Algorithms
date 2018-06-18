@@ -87,5 +87,12 @@ public class MainActivity extends AppCompatActivity {
         straightScore += weightedScore;
         return (weightedScore > 0) ? straightScore : 0;
     }
+    //7. Scoring for 3 of a Kind
+    public int scoreForThreeOfAKind(String[] playerHand){
+        int threeOfAKindScore = 300;
+        int weightedScore = calcNOfAKindScore(playerHand,3,1);
+        threeOfAKindScore += weightedScore;
+        return (weightedScore > 0) ? threeOfAKindScore : 0;
+    }
     }
 }
