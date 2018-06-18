@@ -94,5 +94,12 @@ public class MainActivity extends AppCompatActivity {
         threeOfAKindScore += weightedScore;
         return (weightedScore > 0) ? threeOfAKindScore : 0;
     }
+    //8. Scoring for 2 pairs
+    public int scoreForTwoPairs(String[] playerHand){
+        int twoPairScore = 200;
+        int weightedScore = calcNOfAKindScore(playerHand,2,2);
+        twoPairScore += weightedScore;
+        return (weightedScore > 0) ? twoPairScore : 0;
+    }
     }
 }
