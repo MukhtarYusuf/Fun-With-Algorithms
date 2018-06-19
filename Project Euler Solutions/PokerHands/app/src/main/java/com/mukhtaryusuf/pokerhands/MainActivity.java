@@ -101,5 +101,12 @@ public class MainActivity extends AppCompatActivity {
         twoPairScore += weightedScore;
         return (weightedScore > 0) ? twoPairScore : 0;
     }
+    //9. Scoring for 1 pair
+    public int scoreForOnePair(String[] playerHand){
+        int onePairScore = 100;
+        int weightedScore = calcNOfAKindScore(playerHand,2,1);
+        onePairScore += weightedScore;
+        return (weightedScore > 0) ? onePairScore : 0;
+    }
     }
 }
