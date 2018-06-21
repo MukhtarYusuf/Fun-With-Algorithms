@@ -117,5 +117,16 @@ public class MainActivity extends AppCompatActivity {
         }
         return highCardScore;
     }
+
+
+    public boolean isSameSuit(String[] playerHand){
+        char firstSuit = playerHand[0].charAt(1);
+        for(int i = 1; i < playerHand.length; i++){
+            char currentSuit = playerHand[i].charAt(1);
+            if(firstSuit != currentSuit)
+                return false;
+        }
+        return true;
+    }
     }
 }
