@@ -108,5 +108,14 @@ public class MainActivity extends AppCompatActivity {
         onePairScore += weightedScore;
         return (weightedScore > 0) ? onePairScore : 0;
     }
+    //10. Scoring for High Card
+    public int scoreForHighCard(String[] playerHand, int level){
+        int highCardScore = 0;
+        if(level >= 1 && level <=5) {
+            int[] sortedCardHandValues = getSortedCardValues(playerHand);
+            highCardScore = sortedCardHandValues[HAND_SIZE - level];
+        }
+        return highCardScore;
+    }
     }
 }
