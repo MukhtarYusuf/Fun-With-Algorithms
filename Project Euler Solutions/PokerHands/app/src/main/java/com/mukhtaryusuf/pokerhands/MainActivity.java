@@ -128,5 +128,16 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+    public boolean isRoyalRanks(String[] playerHand){
+        HashSet<Character> playerHandHS = new HashSet<>();
+        for(int i = 0; i < playerHand.length; i++){
+            playerHandHS.add(playerHand[i].charAt(0));
+        }
+        for(int i = 0; i < royalCharacters.length; i++){
+            if(!playerHandHS.contains(royalCharacters[i]));
+                return false;
+        }
+        return true;
+    }
     }
 }
