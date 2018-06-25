@@ -139,5 +139,14 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+    public int calcConsecutiveScore(String[] playerHand){
+        int[] sortedCardHandValues = getSortedCardValues(playerHand);
+        for(int i = 0; i < sortedCardHandValues.length-1; i++){
+            int difference = sortedCardHandValues[i+1] - sortedCardHandValues[i];
+            if(difference != 1)
+                return 0;
+        }
+        return sortedCardHandValues[HAND_SIZE-1];
+    }
     }
 }
