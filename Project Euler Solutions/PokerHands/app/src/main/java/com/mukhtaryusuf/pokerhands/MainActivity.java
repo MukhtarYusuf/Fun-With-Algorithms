@@ -148,5 +148,20 @@ public class MainActivity extends AppCompatActivity {
         }
         return sortedCardHandValues[HAND_SIZE-1];
     }
+    //Where n can be 4, 3, or 2 (for pair)
+    public int calcNOfAKindScore(String[] playerHand, int n, int nCount){
+        int uniqueCount = 0;
+        HashMap<Character, Integer> tracker = getTracker(playerHand);
+        Iterator iterator = tracker.entrySet().iterator();
+        while(iterator.hasNext()){
+            Map.Entry<Character,Integer> pair = (Map.Entry)iterator.next();
+            if(pair.getValue() == n) {
+                uniqueCount++;
+                if(uniqueCount == nCount)
+                    return hashMap.get(pair.getKey());
+            }
+        }
+        return 0;
+    }
     }
 }
