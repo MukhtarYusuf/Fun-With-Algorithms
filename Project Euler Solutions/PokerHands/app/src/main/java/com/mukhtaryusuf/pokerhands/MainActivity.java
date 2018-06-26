@@ -163,5 +163,21 @@ public class MainActivity extends AppCompatActivity {
         }
         return 0;
     }
+
+    //Create and return a HashMap that contains character card values and how many times they occur
+    public HashMap<Character, Integer> getTracker(String[] pHand){
+        HashMap<Character, Integer> hmTracker = new HashMap<>();
+        for(int i = 0; i < pHand.length; i++){
+            char charCardValue = pHand[i].charAt(0);
+            if(!hmTracker.containsKey(charCardValue))
+                hmTracker.put(charCardValue,1);
+            else{
+                int charCount = hmTracker.get(charCardValue);
+                charCount++;
+                hmTracker.put(charCardValue,charCount);
+            }
+        }
+        return hmTracker;
+    }
     }
 }
