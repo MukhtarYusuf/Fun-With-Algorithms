@@ -179,5 +179,16 @@ public class MainActivity extends AppCompatActivity {
         }
         return hmTracker;
     }
+
+    public int[] getSortedCardValues(String[] pHand){
+        int[] cardHandValues = new int[HAND_SIZE];
+        for(int i = 0; i < cardHandValues.length; i++){
+            char charCardValue = pHand[i].charAt(0);
+            int cardValue = hashMap.get(charCardValue);
+            cardHandValues[i] = cardValue;
+        }
+        Arrays.sort(cardHandValues);
+        return cardHandValues;
+    }
     }
 }
