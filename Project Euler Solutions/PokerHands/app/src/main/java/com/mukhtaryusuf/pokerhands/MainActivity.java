@@ -25,6 +25,62 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        calcPlayer1Wins();
+
+        /*
+        The code below lets you test for individual game sessions. Uncomment the code, and edit the values
+        of p1Hand and p2Hand to see the results.
+         */
+        String[] p1Hand = {"4D","6S","9H","QH","QC"};
+        String[] p2Hand = {"3D","6D","7H","QD","QS"};
+        testOneGameSession(p1Hand,p2Hand);
+    }
+
+    public void calcPlayer1Wins(){
+        hashMap = new HashMap<>();
+        cardValues = new int[]{2,3,4,5,6,7,8,9,10,11,12,13,14};
+        cardCharacters = new char[]{'2','3','4','5','6','7','8','9','T','J','Q','K','A'};
+        royalCharacters = new char[]{'J','Q','K','A'};
+        for(int i = 0; i < cardCharacters.length; i++){
+            hashMap.put(cardCharacters[i], cardValues[i]);
+        }
+        String stringFromFile = readAllFromFile();
+        String[] totalGames = stringFromFile.split("\n");
+        int player1WinCount = 0;
+        int player2WinCount = 0;
+        for(String s : totalGames){//Iterate through each game
+            String[] p1Andp2Hand = s.split(" ");
+            String[] player1Hand = new String[HAND_SIZE];
+            String[] player2Hand = new String[HAND_SIZE];
+
+            for(int i = 0; i < HAND_SIZE; i++){//Get the hands for player 1 and player 2
+                player1Hand[i] = p1Andp2Hand[i];
+                player2Hand[i] = p1Andp2Hand[i + HAND_SIZE];
+            }
+            int player1Score = scorePlayerWithHand(player1Hand);
+            int player2Score = scorePlayerWithHand(player2Hand);
+            if(player1Score > player2Score)
+                player1WinCount++;
+            else if(player2Score > player1Score)
+                player2WinCount++;
+            else {//Scores are the same and need the tie breaker
+                int level = 1;
+                while(player1Score == player2Score) {//Continue to perform tie breaker until there's a winner
+                    player1Score = scoreForHighCard(player1Hand, level);
+                    player2Score = scoreForHighCard(player2Hand, level);
+                    level++;
+                }
+                if(player1Score > player2Score)
+                    player1WinCount++;
+                else
+                    player2WinCount++;
+            }
+        }
+        System.out.println("----------Player Win Counts----------");
+        System.out.println("Player 1 Win Count: " + player1WinCount);
+        System.out.println("Player 2 Win Count: " + player2WinCount);
+    }
+
     public String readAllFromFile(){
         StringBuilder result = new StringBuilder();
         Context context = getApplicationContext();
@@ -42,6 +98,34 @@ public class MainActivity extends AppCompatActivity {
 
         return result.toString();
     }
+
+    public int scorePlayerWithHand(String[] hand){
+        int totalScore = 0;
+        int tempScore;
+        if((tempScore = scoreForRoyalFlush(hand)) > 0)
+            totalScore = tempScore;
+        else if((tempScore = scoreForStraightFlush(hand)) > 0)
+            totalScore = tempScore;
+        else if((tempScore = scoreForFourOfAKind(hand)) > 0)
+            totalScore = tempScore;
+        else if((tempScore = scoreForFullHouse(hand)) > 0)
+            totalScore = tempScore;
+        else if((tempScore = scoreForFlush(hand)) > 0)
+            totalScore = tempScore;
+        else if((tempScore = scoreForStraight(hand)) > 0)
+            totalScore = tempScore;
+        else if((tempScore = scoreForThreeOfAKind(hand)) > 0)
+            totalScore = tempScore;
+        else if((tempScore = scoreForTwoPairs(hand)) > 0)
+            totalScore = tempScore;
+        else if((tempScore = scoreForOnePair(hand)) > 0)
+            totalScore = tempScore;
+        else if((tempScore = scoreForHighCard(hand,1)) > 0)
+            totalScore = tempScore;
+
+        return totalScore;
+    }
+
     //1. Scoring for Royal Flush
     public int scoreForRoyalFlush(String[] playerHand){
         final int royalFlushScore = 900;
@@ -190,5 +274,9 @@ public class MainActivity extends AppCompatActivity {
         Arrays.sort(cardHandValues);
         return cardHandValues;
     }
+        System.out.println("----------Testing for One Game Session----------");
+        System.out.println("player 1 score: " + p1Score);
+        System.out.println("player 2 score: " + p2Score);
+        System.out.println((p1Score > p2Score)? playerOneWins : playerTwoWins);
     }
 }
