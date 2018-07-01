@@ -274,6 +274,18 @@ public class MainActivity extends AppCompatActivity {
         Arrays.sort(cardHandValues);
         return cardHandValues;
     }
+
+    public void testOneGameSession(String[] p1Hand, String[] p2Hand){
+        String playerOneWins = "Player 1 Wins!";
+        String playerTwoWins = "Player 2 Wins!";
+        int p1Score = scorePlayerWithHand(p1Hand);
+        int p2Score = scorePlayerWithHand(p2Hand);
+        int lev = 1;
+        while(p1Score == p2Score){
+            p1Score = scoreForHighCard(p1Hand,lev);
+            p2Score = scoreForHighCard(p2Hand,lev);
+            lev++;
+        }
         System.out.println("----------Testing for One Game Session----------");
         System.out.println("player 1 score: " + p1Score);
         System.out.println("player 2 score: " + p2Score);
