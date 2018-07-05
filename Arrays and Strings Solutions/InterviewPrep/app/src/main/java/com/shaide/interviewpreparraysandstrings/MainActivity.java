@@ -40,6 +40,24 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(sentence);
     }
 
+    //Time: O(n), Space: O(1)
+    public boolean isUnique(String s){
+        if(s == null)
+            return false;
+        int sLength = s.length();
+        if(sLength == 0)
+            return false;
+
+        boolean[] flags = new boolean[256];
+        for(int i = 0; i < sLength; i++){
+            char c = s.charAt(i);
+            if(flags[c]) //Found duplicate
+                return false;
+            else
+                flags[c] = true;
+        }
+        return true;
+    }
     public void rotate(int[][] mat){
         if(mat == null)
             return;
