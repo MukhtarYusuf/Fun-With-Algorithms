@@ -58,6 +58,40 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    /*
+    1. Sorting. Time: O(nlogn), Space: O(n)
+    2. HashMap. Time: O(n), Space: O(n)
+    3. Array of constant size. Time: O(n), Space: O(1)
+    4. Bit Manipulation. Time: O(n), Space: O(1)
+     */
+    //Array of Constant Size Solution. Time: O(n), Space: O(1)
+    public boolean isPermut(String a, String b){
+        if(a == null || b == null)
+            return false;
+
+        int aLen = a.length(); int bLen = b.length(); int uniqueChars = 0;
+
+        if(aLen != bLen)
+            return false;
+
+        int[] tracker = new int[256];
+        for(int i = 0; i < aLen; i++){
+            char c = a.charAt(i);
+            if(tracker[c] == 0)
+                uniqueChars++;
+            tracker[c]++;
+        }
+        for(int i = 0; i < bLen; i++){
+            char c = b.charAt(i);
+            if(tracker[c] == 0) //More characters in b than a
+                return false;
+            tracker[c]--;
+            if(tracker[c] == 0)
+                uniqueChars--;
+        }
+        return (uniqueChars == 0);
+    }
     public void rotate(int[][] mat){
         if(mat == null)
             return;
