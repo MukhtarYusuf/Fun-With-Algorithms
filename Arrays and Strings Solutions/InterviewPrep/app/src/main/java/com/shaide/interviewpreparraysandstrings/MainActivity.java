@@ -92,6 +92,30 @@ public class MainActivity extends AppCompatActivity {
         }
         return (uniqueChars == 0);
     }
+
+    public void URLify(char[] s, int tLength){
+        if(s == null)
+            return;
+        if(s.length == 0)
+            return;
+
+        int nLength = tLength;
+        for(int i = 0; i < tLength; i++){
+            if(s[i] == ' ')//Space
+                nLength +=2;
+        }
+        int ptr1; int ptr2;
+        for(ptr1 = tLength - 1, ptr2 = nLength -1; ptr1 >= 0; ptr1--, ptr2--){
+            if(s[ptr1] == ' '){
+                s[ptr2] = '0';
+                s[ptr2 - 1] = '2';
+                s[ptr2 - 2] = '%';
+                ptr2 -= 2;
+            }else
+                s[ptr2] = s[ptr1];
+        }
+    }
+
     public void rotate(int[][] mat){
         if(mat == null)
             return;
