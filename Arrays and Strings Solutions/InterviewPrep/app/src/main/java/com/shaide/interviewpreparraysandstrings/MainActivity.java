@@ -164,6 +164,34 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void myRotate1(int[][] mat){
+        if(mat == null)
+            return;
+        int layer = mat.length; int offset = 0;
+        for(int i = layer; i >= 1; i-=2, offset++){
+            int first = 0 + offset;
+            int last = mat.length - 1 - offset;
+            int subSize = last - first + 1;
+            int[] buffer = new int[subSize];
+
+            //Copy top to buffer
+            for(int j = 0; j < subSize; j++)
+                buffer[j] = mat[first][first+j];
+            //Copy left to top
+            for(int j = 0; j < subSize; j++)
+                mat[first][first+j] = mat[last-j][first];
+            //Copy bottom to left
+            for(int j = 0; j < subSize; j++)
+                mat[last-j][first] = mat[last][last-j];
+            //Copy right to bottom
+            for(int j = 0; j < subSize; j++)
+                mat[last][last-j] = mat[first+j][last];
+            //Copy buffer to right
+            for(int j = 0; j < subSize; j++)
+                mat[first+j][last] = buffer[j];
+        }
+    }
+
     public void displayMatrix(int[][] mat){
         for(int i = 0; i<mat.length;i++){
             for(int j = 0; j<mat[0].length;j++){
