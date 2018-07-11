@@ -79,4 +79,34 @@ public class MainActivity extends AppCompatActivity {
         }
         return longestLength;
     }
+
+    /*
+    Problem: Given a String s, find the longest palindromic substring in s
+
+    Solution: Two pointer expanding solution
+     */
+
+    public String longestPalindrome(String s) {
+        if(s == null || s.length() == 0)
+            return null;
+        int length = s.length();
+        boolean odd = (length%2 != 0);
+        int longestLength = 0;
+        String result = "";
+        for(int i = 0; i < length; i++){//Check
+            int lwr = i; int upr = i+1;
+            String tempString = calcPalindromeLength(s,lwr,upr,longestLength);
+            if(tempString != null){
+                longestLength = tempString.length();
+                result = tempString;
+            }
+            lwr = i; upr = i;
+            tempString = calcPalindromeLength(s,lwr,upr,longestLength);
+            if(tempString != null){
+                longestLength = tempString.length();
+                result = tempString;
+            }
+        }
+        return result;
+    }
 }
