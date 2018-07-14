@@ -109,4 +109,22 @@ public class MainActivity extends AppCompatActivity {
         }
         return result;
     }
+
+    public String calcPalindromeLength(String s, int lower, int upper, int longestLength){
+        int length = 0;
+        while(lower >= 0 && upper <= s.length()-1){
+            char first = s.charAt(lower);
+            char second = s.charAt(upper);
+            if(first == second){
+                length = (upper-lower) + 1;
+            }else{
+                break;
+            }
+            lower--; upper++;
+        }
+        if(length > longestLength)
+            return s.substring(lower+1,upper);
+        else
+            return null;
+    }
 }
