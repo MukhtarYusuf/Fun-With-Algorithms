@@ -2,6 +2,7 @@ package com.mukhtaryusuf.stacksandqueues;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import java.util.EmptyStackException;
 
@@ -155,6 +156,26 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(as.dequeueCat());
         System.out.println(as.dequeueCat());
         System.out.println(as.dequeueDog());
+
+//        ArrayList<Integer> al = new ArrayList<>();
+//        al.add(1); al.add(2); al.add(3); al.add(4); al.add(5);
+//        System.out.println("----------Testing Array List----------");
+//        while(!al.isEmpty()){
+//            for(Integer a : al)
+//                System.out.println(a);
+//            System.out.println();
+//            System.out.println("Removed element: " + al.remove(0));
+//        }
+
+        System.out.println("----------Testing Valid Par----------");
+        validPar(2);
+
+        int[] data = new int[]{4,6,9,1,2};
+        System.out.println("----------Array before sorting----------");
+        printArray(data);
+        System.out.println("----------Array after sorting----------");
+        bubbleSort(data);
+        printArray(data);
     }
 
     public void sortStack(java.util.Stack<Integer> s){
