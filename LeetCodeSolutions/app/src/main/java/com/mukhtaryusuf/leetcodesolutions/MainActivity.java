@@ -127,4 +127,49 @@ public class MainActivity extends AppCompatActivity {
         else
             return null;
     }
+
+
+    /*
+    Problem: Zig-Zag Conversion
+     */
+
+    public String convert(String s, int numRows) {
+
+        if(s.length() == 0)
+            return "";
+        if(numRows == 1)
+            return s;
+        char[][] mat = new char[numRows][s.length()];
+        int numOfDiagonal = numRows - 2; //Number of times not adding vertically
+        int xIndexDiag = numRows - 2; //Starting x index when going diagonal
+        int xIndexVert = 0;
+        boolean isVertical = true;
+        StringBuilder sb = new StringBuilder();
+
+        for(int j = 0, count = 0; count < s.length(); j++){
+            if(isVertical){
+                for(int i = 0; i < numRows && count < s.length(); i++){
+                    mat[i][j] = s.charAt(count);
+                    count++;
+                }
+                isVertical = false;
+            }else{
+                if(xIndexDiag > 0){
+                    mat[xIndexDiag][j] = s.charAt(count);
+                    xIndexDiag--;
+                    count++;
+                }else{
+                    xIndexDiag = numRows - 2;
+                    isVertical = true;
+                }
+            }
+        }
+        for(int i = 0; i < mat.length; i++){
+            for(int j = 0; j < mat[0].length; j++){
+                if(mat[i][j] != 0)
+                    sb.append(mat[i][j]);
+            }
+        }
+        return sb.toString();
+    }
 }
