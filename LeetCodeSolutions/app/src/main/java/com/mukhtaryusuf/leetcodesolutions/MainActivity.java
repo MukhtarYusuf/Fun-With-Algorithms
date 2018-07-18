@@ -172,4 +172,30 @@ public class MainActivity extends AppCompatActivity {
         }
         return sb.toString();
     }
+
+    /*
+    Problem: Given a 32 bit signed integer, reverse the integer
+    e.g. input = 123, Output = 321
+     */
+
+    public int reverse(int x) {
+        String intString;
+        StringBuilder sb = new StringBuilder();
+        if(x < 0){
+            sb.append("-");
+            x = x * -1;
+        }
+        intString = Integer.toString(x);
+        for(int i = intString.length() - 1; i >= 0; i--){
+            sb.append(intString.charAt(i));
+        }
+        String resultString = sb.toString();
+        int result;
+        try{
+            result = Integer.parseInt(resultString);
+        }catch(Exception e){
+            result = 0;
+        }
+        return result;
+    }
 }
