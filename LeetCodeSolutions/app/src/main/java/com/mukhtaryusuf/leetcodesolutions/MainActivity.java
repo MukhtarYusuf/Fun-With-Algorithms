@@ -198,4 +198,56 @@ public class MainActivity extends AppCompatActivity {
         }
         return result;
     }
+
+    /*
+    Problem: Implement atoi, which converts a String to an Integer.
+    The function first discards as many whitespace characters as necessary until the first non-whitespace character is
+    found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical
+    digits as possible, and interprets them as a numerical value. The string can contain additional characters after
+    those that form the integral number, which are ignored and have no effect on the behavior of this function. If the
+    first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists
+    because either str is empty or it contains only whitespace characters, no conversion is performed.
+    If no valid conversion could be performed, a zero value is returned.
+     */
+
+    public int myAtoi(String str) {
+        final int MAX_INT = 2147483647;
+        final int MIN_INT = -2147483648;
+        boolean isNegative = false;
+        long result = 0;
+        if(str == null || str.equals(""))
+            return 0;
+        else{
+            str = str.trim();
+            if(str.charAt(0) == '-')
+                isNegative = true;
+        }
+
+        for(int i = str.length()-1, reverseIndex = 0; i >= 0; i--, reverseIndex++){
+            int digit = 0;
+            try{
+                if(str.charAt(i) != '+' && str.charAt(i) != '-'){
+                    digit = Integer.parseInt(Character.toString(str.charAt(i)));
+                    System.out.println(digit);
+                    result += digit * (int) Math.pow(10, reverseIndex);
+                }
+                if((str.charAt(i) == '+' && i != 0) || (str.charAt(i) == '-' && i != 0))
+                    throw new Exception();
+            }catch(Exception e){
+                digit = 0;
+                reverseIndex = -1;
+                result = 0;
+                System.out.println("Catch executed");
+            }
+        }
+        if(isNegative){
+            System.out.println("is negative executed");
+            result = result * -1;
+        }
+        if(result > MAX_INT)
+            result = MAX_INT;
+        if(result < MIN_INT)
+            result = MIN_INT;
+        return (int) result;
+    }
 }
