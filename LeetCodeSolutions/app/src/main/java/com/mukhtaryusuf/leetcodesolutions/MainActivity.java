@@ -250,4 +250,25 @@ public class MainActivity extends AppCompatActivity {
             result = MIN_INT;
         return (int) result;
     }
+
+    /*
+    Problem: Determine whether an integer is a palindrome.
+
+    e.g. 1 2 2 1, Output: True
+    */
+
+    public boolean isPalindrome(int x) {
+        if(x < 0)
+            return false;
+        int length = Integer.toString(x).length();
+
+        for(int i = 0, i2 = length-1; i < i2; i++,i2--){
+            int digit1 = (x % (int) Math.pow(10, i+1)) / (int) Math.pow(10, i);
+            int digit2 = (x % (int) Math.pow(10, i2+1)) / (int) Math.pow(10, i2);
+
+            if(digit1 != digit2)
+                return false;
+        }
+        return true;
+    }
 }
