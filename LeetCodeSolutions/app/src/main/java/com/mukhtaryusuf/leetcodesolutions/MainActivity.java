@@ -271,4 +271,42 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    /*
+    Problem: Given n non-negative integers a1, a2, ..., an , where each represents a point at coordinate (i, ai).
+    n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines,
+    which together with x-axis forms a container, such that the container contains the most water.
+
+    Note: You may not slant the container and n is at least 2.
+
+    Solution 1: 2 For Loops - Try out every combination of Heights. Time: O(n2), Space: O(1)
+    Solution 2: Two Pointer Solution. Time: O(n), Space: O(1)
+     */
+
+    //Solution 1: 2 For Loops
+    public int maxArea(int[] height){
+        int maxArea = 0;
+        for(int i = 0; i < height.length-1; i++){
+            for(int j = i+1; j < height.length; j++){
+            int tempMaxArea = 0;
+            int width = 0;
+            int height1 = 0;
+            int height2 = 0;
+
+            width = Math.abs(i-j);
+            if(height[i] < height[j])
+            height1 = height[i];
+            else
+            height1 = height[j];
+
+            height2 = Math.abs(height[i] - height[j]);
+
+            tempMaxArea = (width * height1);
+            if(tempMaxArea > maxArea)
+            maxArea = tempMaxArea;
+            }
+        }
+        return maxArea;
+    }
+
 }
