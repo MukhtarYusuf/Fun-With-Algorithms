@@ -309,20 +309,24 @@ public class MainActivity extends AppCompatActivity {
         return maxArea;
     }
 
-            width = Math.abs(i-j);
-            if(height[i] < height[j])
-            height1 = height[i];
+    //Solution 2: Two Pointer Solution
+    public int maxArea1(int[] height) {
+        int maxArea = 0;
+
+        for (int i = 0, j = height.length - 1; i < j; ) {
+            int tempMaxArea = 0;
+            int width = j - i;
+            int length = Math.min(height[i], height[j]);
+
+            tempMaxArea = width * length;
+            maxArea = Math.max(tempMaxArea, maxArea);
+
+            if (height[i] < height[j])
+                i++;
             else
-            height1 = height[j];
-
-            height2 = Math.abs(height[i] - height[j]);
-
-            tempMaxArea = (width * height1);
-            if(tempMaxArea > maxArea)
-            maxArea = tempMaxArea;
-            }
+                j--;
         }
+
         return maxArea;
     }
-
 }
