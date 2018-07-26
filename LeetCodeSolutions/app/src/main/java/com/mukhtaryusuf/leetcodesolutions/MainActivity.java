@@ -295,15 +295,15 @@ public class MainActivity extends AppCompatActivity {
 
                 width = Math.abs(i-j);
                 if(height[i] < height[j])
-                height1 = height[i];
+                    height1 = height[i];
                 else
-                height1 = height[j];
+                    height1 = height[j];
 
                 height2 = Math.abs(height[i] - height[j]);
-
                 tempMaxArea = (width * height1);
+
                 if(tempMaxArea > maxArea)
-                maxArea = tempMaxArea;
+                    maxArea = tempMaxArea;
             }
         }
         return maxArea;
