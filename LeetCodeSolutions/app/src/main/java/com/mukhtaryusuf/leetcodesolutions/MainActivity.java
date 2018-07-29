@@ -3,7 +3,10 @@ package com.mukhtaryusuf.leetcodesolutions;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -328,5 +331,47 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return maxArea;
+    }
+
+    /*
+    Problem: Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0?
+    Find all unique triplets in the array which gives the sum of zero.
+
+    Note: The solution set must not contain duplicate triplets.
+     */
+
+    //Solution: Sorting with 2 Pointer Solution
+    public List<List<Integer>> threeSum(int[] nums){
+        if(nums == null)
+            return null;
+        int length = nums.length;
+        List<List<Integer>> results = new ArrayList<>();
+        Arrays.sort(nums);
+        int sum = 0;
+        for(int i = 0; i < length-1; i++){
+            if(i == 0 || i > 0 && nums[i] != nums[i-1]){
+                int newSum = sum - nums[i];
+                
+                int lwr = i+1;
+                int upr = length-1;
+                while(lwr < upr){
+                    int lastSum = nums[lwr]+nums[upr];
+                    if(lastSum == newSum){
+                        Integer[] resultArray = new Integer[]{nums[i],nums[lwr],nums[upr]};
+                        List<Integer> result = new ArrayList<>(Arrays.asList(resultArray));
+                        results.add(result);
+                        while(lwr < upr && nums[lwr] == nums[lwr+1])
+                            lwr++;
+                        while(lwr < upr && nums[upr] == nums[upr-1])
+                            upr--;
+                        lwr++; upr--;
+                    }else if(lastSum < newSum)
+                        lwr++;
+                    else
+                        upr--;
+                }
+            }
+        }
+        return results;
     }
 }
