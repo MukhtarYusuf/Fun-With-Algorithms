@@ -351,7 +351,7 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < length-1; i++){
             if(i == 0 || i > 0 && nums[i] != nums[i-1]){
                 int newSum = sum - nums[i];
-                
+
                 int lwr = i+1;
                 int upr = length-1;
                 while(lwr < upr){
@@ -373,5 +373,33 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return results;
+
+        /*
+        Problem: Given a linked list, remove the n-th node from the end of list and return its head.
+
+        Example: Given list, 1->2->3->4->5, n = 2, return 1->2->3->5.
+        Can this be done in one pass?
+
+        Solution 1: Find nth to last node by calculating length first, then deleting it. Time: O(n), Space: O(1)
+        Solution 2: Use runner technique to find nth to last node, then delete it. Time: O(n), Space: O(1)
+         */
+
+        //Solution 2
+        public ListNode removeNthFromEnd(ListNode head, int n){
+            if(head == null)
+                return null;
+            ListNode previous = head, slower = head, faster = head;
+            for(int i = 0; i < n; i++)
+                faster = faster.next;
+            while(faster != null){
+                previous = slower;
+                slower = slower.next;
+                faster = faster.next;
+            }
+            if(slower == head)
+                head = head.next;
+            previous.next = slower.next;
+            return head;
+        }
     }
 }
