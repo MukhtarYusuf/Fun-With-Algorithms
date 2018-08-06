@@ -32,4 +32,25 @@ public class MainActivity extends AppCompatActivity {
 
         return nWays;
     }
+
+    //Solution 2: Dynamic Programming. Time:O(n), Space: O(n)
+    public int tripleStep1(int n){
+        int[] cache = new int[n+1];
+        Arrays.fill(cache, -1);
+        return tripleStep1(n, cache);
+    }
+
+    public int tripleStep1(int n, int[] cache){
+        if(n < 0)
+            return 0;
+        if(n == 0)
+            return 1;
+        if(cache[n] > -1)//Already Computed
+            return cache[n];
+        else{
+            cache[n] = tripleStep1(n-1, cache) + tripleStep1(n-2, cache) + tripleStep1(n-3, cache);
+            return cache[n];
+        }
+    }
+
 }
