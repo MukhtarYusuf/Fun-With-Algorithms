@@ -53,4 +53,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public ArrayList<Point> robotPath(boolean[][] grid){
+        if(grid == null || grid.length == 0)
+            return null;
+
+        ArrayList<Point> result = new ArrayList<>();
+        robotPath(grid, 0, 0, result);
+
+        return result;
+    }
+
+    public boolean robotPath(boolean[][] grid, int row, int col, ArrayList<Point> path){
+        if(row >= grid.length || col >= grid[0].length || !grid[row][col])
+            return false;
+
+        boolean isAtEnd = (row == grid.length-1 && col == grid[0].length-1);
+
+        if(isAtEnd || robotPath(grid, row+1, col, path) || robotPath(grid, row, col+1, path)){
+            Point p = new Point(row, col);
+            path.add(p);
+            return true;
+        }
+
+        return false;
+    }
+
 }
