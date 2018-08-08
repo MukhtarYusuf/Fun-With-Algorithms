@@ -78,4 +78,31 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    public ArrayList<Point> robotPath1(boolean[][] grid){
+        if(grid == null || grid.length == 0)
+            return null;
+
+        ArrayList<Point> result = new ArrayList<>();
+        HashSet<Point> cache = new HashSet<>();
+        robotPath1(grid, 0, 0, result, cache);
+        return result;
+    }
+
+    public boolean robotPath1(boolean[][] grid, int row, int col, ArrayList<Point> points, HashSet<Point> cache){
+        if(row >= grid.length || col >= grid[0].length || !grid[row][col])
+            return false;
+
+        Point p = new Point(row, col);
+        if(cache.contains(p))
+            return false;
+
+        boolean isAtEnd = (row == grid.length-1 && col == grid[0].length-1);
+        if(isAtEnd || robotPath1(grid, row+1, col, points, cache) || robotPath1(grid, row, col+1, points, cache)){
+            points.add(p);
+            return true;
+        }
+
+        cache.add(p);
+        return false;
+    }
 }
