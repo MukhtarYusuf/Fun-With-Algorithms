@@ -18,6 +18,12 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Triple Step Result: " + result);
 
     }
+
+    public void printList(ArrayList<Point> pList){
+        for(Point p : pList)
+            System.out.println(p);
+    }
+
     //Solution 1: Brute Force. Time:O(3^n), Space: O(n)
     public int tripleStep(int n){
         if(n < 0)
