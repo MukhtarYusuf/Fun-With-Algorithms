@@ -17,6 +17,22 @@ public class MainActivity extends AppCompatActivity {
         int result = tripleStep(3);
         System.out.println("Triple Step Result: " + result);
 
+        result = tripleStep1(2);
+        System.out.println("Triple Step 1 Result: " + result);
+
+        boolean[][] grid = new boolean[][]{{true, true, true, true},
+                                            {false, false, true, true},
+                                            {true, false, true, true},
+                                            {true, true, true, true}
+                                        };
+
+        ArrayList<Point> robotPathResult = robotPath(grid);
+        System.out.println("----------Robot Path Result----------");
+        printList(robotPathResult);
+
+        robotPathResult = robotPath1(grid);
+        System.out.println("----------Robot Path 1 Result----------");
+        printList(robotPathResult);
     }
 
     public void printList(ArrayList<Point> pList){
