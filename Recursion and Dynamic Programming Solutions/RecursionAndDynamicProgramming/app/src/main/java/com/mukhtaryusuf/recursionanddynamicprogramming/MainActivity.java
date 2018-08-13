@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -127,4 +128,26 @@ public class MainActivity extends AppCompatActivity {
         cache.add(p);
         return false;
     }
+
+    public int magicIndex(int[] array){
+        if(array == null || array.length == 0)
+            return -1;
+
+        return recMagicIndex(array, 0, array.length-1);
+    }
+
+    public int recMagicIndex(int[] array, int lower, int upper){
+        if(lower > upper)
+            return -1;
+
+        int mid = (lower + upper)/2;
+
+        if(mid > array[mid])//Search Right Half
+            return recMagicIndex(array, mid+1, upper);
+        else if(mid < array[mid])//Search Left Half
+            return recMagicIndex(array, lower, mid-1);
+        else
+            return mid;
+    }
+
 }
