@@ -150,4 +150,31 @@ public class MainActivity extends AppCompatActivity {
             return mid;
     }
 
+    public int magicIndex1(int[] array){
+        if(array == null || array.length == 0)
+            return -1;
+        return recMagicIndex1(array, 0, array.length-1);
+    }
+
+    public int recMagicIndex1(int[] array, int lower, int upper){
+        if(lower > upper)
+            return -1;
+
+        int midIndex = (lower + upper)/2;
+        int midValue = array[midIndex];
+
+        if(midIndex == midValue)
+            return midIndex;
+
+        int leftIndex = Math.min(midIndex-1, midValue);
+        int leftResult = recMagicIndex1(array, lower, leftIndex);
+        if(leftResult != -1)
+            return leftResult;
+
+        int rightIndex = Math.max(midIndex+1, midValue);
+        int rightResult = recMagicIndex1(array, rightIndex, upper);
+
+        return rightResult;
+    }
+
 }
