@@ -177,4 +177,27 @@ public class MainActivity extends AppCompatActivity {
         return rightResult;
     }
 
+    public ArrayList<ArrayList<Integer>> getSubsets(ArrayList<Integer> set, int index){
+        ArrayList<ArrayList<Integer>> allSubsets = null;
+        if(index == set.size()){
+            allSubsets = new ArrayList<>();
+            allSubsets.add(new ArrayList<Integer>());
+        }else{
+            allSubsets = getSubsets(set, index+1);
+
+            ArrayList<ArrayList<Integer>> extraSubsets = new ArrayList<>();
+            int current = set.get(index);
+
+            for(ArrayList<Integer> subset : allSubsets){
+                ArrayList<Integer> newSubset = new ArrayList<>();
+                newSubset.addAll(subset);
+                newSubset.add(current);
+                extraSubsets.add(newSubset);
+            }
+            allSubsets.addAll(extraSubsets);
+        }
+
+        return allSubsets;
+    }
+
 }
