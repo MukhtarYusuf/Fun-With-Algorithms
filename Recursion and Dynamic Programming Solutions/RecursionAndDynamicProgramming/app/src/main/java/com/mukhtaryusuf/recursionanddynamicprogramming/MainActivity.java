@@ -200,4 +200,32 @@ public class MainActivity extends AppCompatActivity {
         return allSubsets;
     }
 
+    //Solution 1. Time: O(logs), Space: O(s)
+    public int multiply(int a, int b){
+        int smaller = a < b ? a : b;
+        int bigger = a < b ? b : a;
+        int[] cache = new int[smaller+1];
+
+        return recMultiply(bigger, smaller, cache);
+    }
+
+    public int recMultiply(int bigger, int smaller, int[] cache){
+        if(smaller == 0)
+            return 0;
+        if(smaller == 1)
+            return bigger;
+        if(cache[smaller] > 0)
+            return cache[smaller];
+
+        int halfSmaller = smaller >> 1;
+        int leftResult = recMultiply(bigger, halfSmaller, cache);
+        int rightResult = leftResult;
+
+        if(smaller % 2 == 1)
+            rightResult = recMultiply(bigger, smaller - halfSmaller, cache);
+
+        cache[smaller] = leftResult + rightResult;
+        return cache[smaller];
+    }
+
 }
