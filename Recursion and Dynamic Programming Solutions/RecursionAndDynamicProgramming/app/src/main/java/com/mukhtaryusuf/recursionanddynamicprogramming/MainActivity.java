@@ -228,4 +228,27 @@ public class MainActivity extends AppCompatActivity {
         return cache[smaller];
     }
 
+    //Solution 2. Time: O(logs), Space: O(1)
+    public int multiply1(int a, int b){
+        int smaller = a < b ? a : b;
+        int bigger = a < b ? b : a;
+
+        return recMultiply1(bigger, smaller);
+    }
+
+    public int recMultiply1(int bigger, int smaller){
+        if(smaller == 0)
+            return 0;
+        if(smaller == 1)
+            return bigger;
+
+        int halfSmaller = smaller >> 1;
+        int halfResult = recMultiply1(bigger, halfSmaller);
+
+        if(smaller % 2 == 0)
+            return halfResult + halfResult;
+        else
+            return halfResult + halfResult + bigger;
+    }
+
 }
