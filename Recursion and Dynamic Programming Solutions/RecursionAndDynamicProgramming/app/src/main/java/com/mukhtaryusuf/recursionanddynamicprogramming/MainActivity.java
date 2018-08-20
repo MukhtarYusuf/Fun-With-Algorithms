@@ -251,4 +251,20 @@ public class MainActivity extends AppCompatActivity {
             return halfResult + halfResult + bigger;
     }
 
+    public void solveHanoi(Stack<Integer> source, Stack<Integer> temp, Stack<Integer> dest){
+        int n = source.size();
+        if(n == 0)
+            return;
+
+        recSolveHanoi(source, temp, dest, n);
+    }
+
+    public void recSolveHanoi(Stack<Integer> source, Stack<Integer> temp, Stack<Integer> dest, int n){
+        if(n == 0)
+            return;
+
+        recSolveHanoi(source, dest, temp, n-1);
+        dest.push(source.pop());
+        recSolveHanoi(temp, source, dest, n-1);
+    }
 }
