@@ -34,6 +34,25 @@ public class MainActivity extends AppCompatActivity {
         robotPathResult = robotPath1(grid);
         System.out.println("----------Robot Path 1 Result----------");
         printList(robotPathResult);
+
+        Stack<Integer> sourceStack = new Stack<>();
+        Stack<Integer> tempStack = new Stack<>();
+        Stack<Integer> destStack = new Stack<>();
+
+        sourceStack.push(5);
+        sourceStack.push(4);
+        sourceStack.push(3);
+        sourceStack.push(2);
+        sourceStack.push(1);
+
+        System.out.println("----------Towers of Hanoi Result----------");
+        System.out.println("Before Hanoi...");
+        System.out.println(sourceStack);
+        solveHanoi(sourceStack, tempStack, destStack);
+
+        System.out.println("After Hanoi...");
+        System.out.println(destStack);
+
     }
 
     public void printList(ArrayList<Point> pList){
