@@ -286,4 +286,22 @@ public class MainActivity extends AppCompatActivity {
         dest.push(source.pop());
         recSolveHanoi(temp, source, dest, n-1);
     }
+
+    public void doPermut(char[] chars){
+        if(chars == null || chars.length == 0)
+            return;
+        recDoPermut(chars, 0);
+    }
+
+    public void recDoPermut(char[] chars, int index){
+        if(index == chars.length - 1) {
+            System.out.println(chars);
+            return;
+        }
+        for(int i = index; i < chars.length; i++){
+            recDoPermut(chars, index+1);
+            rotate(chars, index);
+        }
+    }
+
 }
