@@ -304,4 +304,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void rotate(char[] cArray, int startIndex){
+        int length = cArray.length;
+        char lastChar = cArray[length-1];
+        for(int i = length - 1; i > startIndex; i++){
+            cArray[i] = cArray[i-1];
+        }
+        cArray[startIndex] = lastChar;
+    }
+
 }
