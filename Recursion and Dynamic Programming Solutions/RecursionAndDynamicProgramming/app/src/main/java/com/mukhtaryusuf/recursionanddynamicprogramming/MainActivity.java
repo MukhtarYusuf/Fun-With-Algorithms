@@ -313,4 +313,24 @@ public class MainActivity extends AppCompatActivity {
         cArray[startIndex] = lastChar;
     }
 
+    public ArrayList<String> getPermutations(String word){
+        ArrayList<String> result = new ArrayList<>();
+        int sLength = word.length();
+        if(sLength == 0){
+            result.add("");
+            return result;
+        }
+        for(int i = 0; i < sLength; i++){
+            String left = word.substring(0,i);
+            String right = word.substring(i+1);
+            char cur = word.charAt(i);
+
+            ArrayList<String> subResult = getPermutations(left+right);
+            for(String s : subResult){
+                String permutation = cur + s;
+                result.add(permutation);
+            }
+        }
+        return result;
+    }
 }
