@@ -359,4 +359,26 @@ public class MainActivity extends AppCompatActivity {
         return result;
     }
 
+    public ArrayList<String> getPermutations2(String word){
+        ArrayList<String> result = new ArrayList<>();
+        HashMap<Character, Integer> map = buildMap(word);
+        getPermutations2(map, "", word.length(), result);
+        return result;
+    }
+
+    public void getPermutations2(HashMap<Character, Integer> map, String prefix, int length, ArrayList<String> result){
+        if(length == 0){
+            result.add(prefix);
+            return;
+        }
+        for(char c : map.keySet()){
+            int occurence = map.get(c);
+            if(occurence > 0){
+                map.put(c, occurence-1);
+                getPermutations2(map, prefix+c, length-1, result);
+                map.put(c, occurence);
+            }
+        }
+    }
+
 }
