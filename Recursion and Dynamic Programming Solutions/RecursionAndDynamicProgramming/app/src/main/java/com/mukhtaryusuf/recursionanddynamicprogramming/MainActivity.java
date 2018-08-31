@@ -333,4 +333,30 @@ public class MainActivity extends AppCompatActivity {
         }
         return result;
     }
+
+    public ArrayList<String> getPermutations1(String word){
+        ArrayList<String> result = new ArrayList<>();
+        HashSet<String> hashSet = new HashSet<>();
+        int sLength = word.length();
+
+        if(sLength == 0){
+            result.add("");
+            return result;
+        }
+        for(int i = 0; i < sLength; i++){
+            String left = word.substring(0, i);
+            String right = word.substring(i+1);
+            char c = word.charAt(i);
+            ArrayList<String> subResult = getPermutations1(left+right);
+            for(String s : subResult){
+                String permutation = c + s;
+                if(!hashSet.contains(permutation)){
+                    result.add(permutation);
+                    hashSet.add(permutation);
+                }
+            }
+        }
+        return result;
+    }
+
 }
