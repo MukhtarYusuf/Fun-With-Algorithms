@@ -381,4 +381,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public HashMap<Character, Integer> buildMap(String s){
+        HashMap<Character, Integer> hashMap = new HashMap<>();
+
+        for(int i = 0; i < s.length(); i++){
+            char c = s.charAt(i);
+            if(!hashMap.containsKey(c))
+                hashMap.put(c, 1);
+            else
+                hashMap.put(c, hashMap.get(c) + 1);
+        }
+        return hashMap;
+    }
+
 }
