@@ -394,4 +394,28 @@ public class MainActivity extends AppCompatActivity {
         return hashMap;
     }
 
+    public ArrayList<String> validPar(int n){
+        if(n <= 0)
+            return null;
+        char[] cArray = new char[n*2];
+        ArrayList<String> result = new ArrayList<>();
+        recValidPar(cArray, 0, n, n, result);
+        return result;
+    }
+
+    public void recValidPar(char[] cArray, int index, int left, int right, ArrayList<String> result){
+        if(left < 0 || right > left)//Invalid State
+            return;
+
+        if(left == 0 && right == 0){
+            result.add(String.copyValueOf(cArray));
+            return;
+        }
+        cArray[index] = '(';
+        recValidPar(cArray, index+1, left-1, right, result);
+
+        cArray[index] = ')';
+        recValidPar(cArray, index+1, left, right-1, result);
+    }
+
 }
