@@ -418,4 +418,23 @@ public class MainActivity extends AppCompatActivity {
         recValidPar(cArray, index+1, left, right-1, result);
     }
 
+    public void paintFill(Color[][] screen, int row, int col, Color newColor){
+        Color curColor = screen[row][col];
+        paintFill(screen, row, col, newColor, curColor);
+    }
+
+    public void paintFill(Color[][] screen, int row, int col, Color newColor, Color oldColor){
+        if(row < 0 || row >= screen.length || col < 0 || col >= screen[0].length)
+            return;
+
+        Color currentColor = screen[row][col];
+        if(currentColor.equals(oldColor)){
+            screen[row][col] = newColor;
+            paintFill(screen, row-1, col, newColor, oldColor);//Go Up
+            paintFill(screen, row, col+1, newColor, oldColor);//Go Right
+            paintFill(screen, row+1, col, newColor, oldColor);//Go Down
+            paintFill(screen, row, col-1, newColor, oldColor);//Go Left
+        }
+    }
+
 }
