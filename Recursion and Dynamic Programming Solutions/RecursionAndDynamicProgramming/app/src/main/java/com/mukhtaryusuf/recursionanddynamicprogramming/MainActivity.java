@@ -437,4 +437,25 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    public void placeQueens(){
+        int BOARD_SIZE = 8;
+        boolean[][] board = new boolean[BOARD_SIZE][BOARD_SIZE];
+        placeQueens(board, 0);
+    }
+
+    public void placeQueens(boolean[][] board, int row){
+        if(row == board.length){
+            printBoard(board);
+            return;
+        }
+        for(int j = 0; j < board[0].length; j++){
+            if(isValid(board, row, j)){
+                board[row][j] = true;
+                placeQueens(board, row+1);
+                board[row][j] = false;
+            }
+        }
+    }
+
 }
