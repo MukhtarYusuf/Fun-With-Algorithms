@@ -481,4 +481,14 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    public void printBoard(boolean[][] board){
+        System.out.println("----------Printing Board----------");
+        System.out.println();
+        for(int i = 0; i < board.length; i++){
+            for(int j = 0; j < board[0].length; j++){
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
 }
