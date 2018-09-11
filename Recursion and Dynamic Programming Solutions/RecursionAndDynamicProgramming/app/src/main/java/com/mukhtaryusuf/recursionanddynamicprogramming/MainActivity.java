@@ -458,4 +458,27 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public boolean isValid(boolean[][] board, int row, int col){
+        //Check column
+        int i; int j;
+        for(i = 0; i < row; i++){
+            if(board[i][col])
+                return false;
+        }
+        //Check diagonal
+        i = row; j = col;
+        while(i >= 0 && j >= 0){
+            if(board[i][j])
+                return false;
+            i--; j--;
+        }
+        i = row; j = col;
+        while(i >= 0 && j < board[0].length){
+            if(board[i][j])
+                return false;
+            i--; j++;
+        }
+        return true;
+    }
+
 }
