@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Stack;
 
@@ -53,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("After Hanoi...");
         System.out.println(destStack);
 
+        System.out.println("----------Place Queens Result----------");
+        placeQueens();
     }
 
     public void printList(ArrayList<Point> pList){
