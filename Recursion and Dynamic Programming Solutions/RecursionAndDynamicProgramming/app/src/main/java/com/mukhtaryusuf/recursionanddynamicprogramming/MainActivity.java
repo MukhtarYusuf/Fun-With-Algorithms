@@ -63,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(p);
     }
 
+    /*
+    Problem 1: Triple Step
+     */
+
     //Solution 1: Brute Force. Time:O(3^n), Space: O(n)
     public int tripleStep(int n){
         if(n < 0)
@@ -98,6 +102,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*
+    Problem 2: Robot Path
+     */
+
+    //Solution 1
     public ArrayList<Point> robotPath(boolean[][] grid){
         if(grid == null || grid.length == 0)
             return null;
@@ -123,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    //Solution 2: Dynamic Programming
     public ArrayList<Point> robotPath1(boolean[][] grid){
         if(grid == null || grid.length == 0)
             return null;
@@ -151,6 +161,11 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    /*
+    Problem 3: Magic Index
+     */
+
+    //Solution: Divide and Conquer. Time: O(logn), Space: O(logn)
     public int magicIndex(int[] array){
         if(array == null || array.length == 0)
             return -1;
@@ -171,6 +186,10 @@ public class MainActivity extends AppCompatActivity {
         else
             return mid;
     }
+
+    /*
+    Problem 3 Follow Up (Array contains duplicates)
+     */
 
     public int magicIndex1(int[] array){
         if(array == null || array.length == 0)
@@ -199,6 +218,11 @@ public class MainActivity extends AppCompatActivity {
         return rightResult;
     }
 
+    /*
+    Problem 4: Subsets
+     */
+
+    //Solution 1 (Recursion). Time: (2^n), Space: O(n)
     public ArrayList<ArrayList<Integer>> getSubsets(ArrayList<Integer> set, int index){
         ArrayList<ArrayList<Integer>> allSubsets = null;
         if(index == set.size()){
@@ -222,7 +246,11 @@ public class MainActivity extends AppCompatActivity {
         return allSubsets;
     }
 
-    //Solution 1. Time: O(logs), Space: O(s)
+    /*
+    Problem 5: Multiply two numbers without '*' and '/' Operator
+     */
+
+    //Solution 1. Time: O(logs), Space: O(s), where s is the size of the smaller integer
     public int multiply(int a, int b){
         int smaller = a < b ? a : b;
         int bigger = a < b ? b : a;
@@ -250,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
         return cache[smaller];
     }
 
-    //Solution 2. Time: O(logs), Space: O(1)
+    //Solution 2. Time: O(logs), Space: O(logs)
     public int multiply1(int a, int b){
         int smaller = a < b ? a : b;
         int bigger = a < b ? b : a;
@@ -273,6 +301,10 @@ public class MainActivity extends AppCompatActivity {
             return halfResult + halfResult + bigger;
     }
 
+    /*
+    Problem 6: Towers of Hanoi.
+     */
+
     public void solveHanoi(Stack<Integer> source, Stack<Integer> temp, Stack<Integer> dest){
         int n = source.size();
         if(n == 0)
@@ -290,6 +322,11 @@ public class MainActivity extends AppCompatActivity {
         recSolveHanoi(temp, source, dest, n-1);
     }
 
+    /*
+    Problem 7: Permutations Without Duplicates
+     */
+
+    //Solution 1: Using char[] array and rotation
     public void doPermut(char[] chars){
         if(chars == null || chars.length == 0)
             return;
@@ -310,12 +347,13 @@ public class MainActivity extends AppCompatActivity {
     public void rotate(char[] cArray, int startIndex){
         int length = cArray.length;
         char lastChar = cArray[length-1];
-        for(int i = length - 1; i > startIndex; i++){
+        for(int i = length - 1; i > startIndex; i--){
             cArray[i] = cArray[i-1];
         }
         cArray[startIndex] = lastChar;
     }
 
+    //Solution 2: Using Immutable String
     public ArrayList<String> getPermutations(String word){
         ArrayList<String> result = new ArrayList<>();
         int sLength = word.length();
@@ -337,6 +375,11 @@ public class MainActivity extends AppCompatActivity {
         return result;
     }
 
+    /*
+    Problem 8: Permutations With Duplicates
+     */
+
+    //Solution 1: Using HashSet
     public ArrayList<String> getPermutations1(String word){
         ArrayList<String> result = new ArrayList<>();
         HashSet<String> hashSet = new HashSet<>();
@@ -362,6 +405,7 @@ public class MainActivity extends AppCompatActivity {
         return result;
     }
 
+    //Solution 2: Using HashMap and Passing Prefix Down Recursive Stack
     public ArrayList<String> getPermutations2(String word){
         ArrayList<String> result = new ArrayList<>();
         HashMap<Character, Integer> map = buildMap(word);
@@ -397,6 +441,9 @@ public class MainActivity extends AppCompatActivity {
         return hashMap;
     }
 
+    /*
+    Problem 9: Valid Parenthesis
+     */
     public ArrayList<String> validPar(int n){
         if(n <= 0)
             return null;
@@ -421,6 +468,11 @@ public class MainActivity extends AppCompatActivity {
         recValidPar(cArray, index+1, left, right-1, result);
     }
 
+    /*
+    Problem 10: Paint Fill
+     */
+
+    //Solution: Recursion (DFS)
     public void paintFill(Color[][] screen, int row, int col, Color newColor){
         Color curColor = screen[row][col];
         paintFill(screen, row, col, newColor, curColor);
@@ -441,6 +493,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /*
+    Problem 12: Place Queens
+     */
     public void placeQueens(){
         int BOARD_SIZE = 8;
         boolean[][] board = new boolean[BOARD_SIZE][BOARD_SIZE];
@@ -449,7 +504,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void placeQueens(boolean[][] board, int row){
         if(row == board.length){
-            printBoard(board);
+//            printBoard(board);
             return;
         }
         for(int j = 0; j < board[0].length; j++){
