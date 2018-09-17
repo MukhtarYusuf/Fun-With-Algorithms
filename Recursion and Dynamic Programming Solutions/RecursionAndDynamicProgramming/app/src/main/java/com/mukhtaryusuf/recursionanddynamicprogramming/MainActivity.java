@@ -492,6 +492,33 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*
+    Problem 11: Coins
+     */
+
+    //Solution 1: Brute Force Recursion
+    public int coinChange(int amount){
+        if(amount <= 0)
+            return 0;
+        int[] coins = {25, 10, 5, 1};
+        return coinChange(amount, coins, 0);
+    }
+
+    public int coinChange(int amount, int[] coins, int index){
+        if(amount == 0)
+            return 1;
+        if(amount < 0 || index >= coins.length)
+            return 0;
+
+        int totalWays = 0;
+        int coinValue = coins[index];
+        for(int i = 0; i * coinValue <= amount; i++){
+            int amountLeft = amount - i * coinValue;
+            totalWays += coinChange(amountLeft, coins, index + 1);
+        }
+        return totalWays;
+    }
+
 
     /*
     Problem 12: Place Queens
