@@ -519,6 +519,36 @@ public class MainActivity extends AppCompatActivity {
         return totalWays;
     }
 
+    //Solution 2: Dynamic Programming
+    public int coinChange1(int amount){
+        if(amount <= 0)
+            return 0;
+        int[] coins = {25, 10, 5, 1};
+        int[][] cache = new int[amount+1][coins.length];
+        for(int i = 0; i < cache.length; i++){
+            for(int j = 0; j < cache[0].length; j++){
+                cache[i][j] = -1;
+            }
+        }
+        return coinChange1(amount, coins, 0, cache);
+    }
+
+    public int coinChange1(int amount, int[] coins, int index, int[][] cache){
+        if(amount == 0)
+            return 1;
+        if(amount < 0 || index >= coins.length)
+            return 0;
+        if(cache[amount][index] != -1)
+            return cache[amount][index];
+        int totalWays = 0;
+        int coinValue = coins[index];
+        for(int i = 0; i * coinValue <= amount; i++){
+            int amountLeft = amount - i * coinValue;
+            totalWays += coinChange1(amountLeft, coins, index + 1, cache);
+        }
+        cache[amount][index] = totalWays;
+        return totalWays;
+    }
 
     /*
     Problem 12: Place Queens
