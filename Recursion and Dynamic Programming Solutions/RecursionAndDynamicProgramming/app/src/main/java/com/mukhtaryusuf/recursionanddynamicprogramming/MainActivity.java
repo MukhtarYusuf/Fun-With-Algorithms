@@ -606,4 +606,36 @@ public class MainActivity extends AppCompatActivity {
             System.out.println();
         }
     }
+
+    /*
+    Problem 13: Stack of Boxes
+     */
+
+    //Solution 1: Brute Force Recursion
+    public int stackOfBoxes(Box[] boxes){
+        if(boxes == null || boxes.length == 0)
+            return -1;
+
+        Arrays.sort(boxes);
+        int maxHeight = 0;
+        for(int i = 0; i < boxes.length; i++){
+            int height = stackOfBoxes(boxes, i);
+            maxHeight = Math.max(maxHeight, height);
+        }
+        return maxHeight;
+    }
+
+    public int stackOfBoxes(Box[] boxes, int bottomIndex){
+        Box bottomBox = boxes[bottomIndex];
+        int maxHeight = 0;
+        for(int i = bottomIndex+1; i < boxes.length; i++){
+            if(canBeOnTop(bottomBox, boxes[i])){
+                int height = stackOfBoxes(boxes, i);
+                maxHeight = Math.max(maxHeight, height);
+            }
+        }
+        maxHeight += bottomBox.height;
+        return maxHeight;
+    }
+
 }
