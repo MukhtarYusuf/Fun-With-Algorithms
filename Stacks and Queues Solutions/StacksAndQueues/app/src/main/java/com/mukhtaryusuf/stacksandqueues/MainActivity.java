@@ -202,4 +202,28 @@ public class MainActivity extends AppCompatActivity {
         while(!bStack.isEmpty())
             s.push(bStack.pop());
     }
+
+    public void validPar(int n){
+        if(n <= 0)
+            return;
+
+        char[] arr = new char[n*2];
+        recValidPar(arr, 0, n,n);
+    }
+
+    public void recValidPar(char[] a, int index, int leftCount, int rightCount){
+        if(leftCount < 0 || rightCount < leftCount)
+            return;
+        if(leftCount == 0 && rightCount == 0){
+            System.out.println(a);
+            return;
+        }
+
+        a[index] = '(';
+        recValidPar(a, index + 1, leftCount - 1, rightCount);
+
+        a[index] = ')';
+        recValidPar(a,index+1,leftCount, rightCount-1);
+    }
+
 }
