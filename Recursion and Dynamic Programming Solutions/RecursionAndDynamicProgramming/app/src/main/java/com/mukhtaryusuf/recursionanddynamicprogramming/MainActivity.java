@@ -638,4 +638,8 @@ public class MainActivity extends AppCompatActivity {
         return maxHeight;
     }
 
+    public boolean canBeOnTop(Box bottomBox, Box topBox){
+        return (topBox.height < bottomBox.height && topBox.width < bottomBox.width && topBox.depth < bottomBox.depth);
+    }
+
 }
