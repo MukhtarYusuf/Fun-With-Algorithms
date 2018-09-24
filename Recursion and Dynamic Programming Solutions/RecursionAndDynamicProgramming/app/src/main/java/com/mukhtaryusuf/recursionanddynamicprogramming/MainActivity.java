@@ -642,4 +642,38 @@ public class MainActivity extends AppCompatActivity {
         return (topBox.height < bottomBox.height && topBox.width < bottomBox.width && topBox.depth < bottomBox.depth);
     }
 
+    //Solution 2: Dynamic Programming
+    public int stackOfBoxes1(Box[] boxes){
+        if(boxes == null || boxes.length == 0)
+            return -1;
+        int length = boxes.length;
+        int maxHeight = 0;
+        int[] cache = new int[length];
+        Arrays.sort(boxes);
+
+        for(int i = 0; i < length; i++){
+            int height = stackOfBoxes1(boxes, i, cache);
+            maxHeight = Math.max(maxHeight, height);
+        }
+        return maxHeight;
+    }
+
+    public int stackOfBoxes1(Box[] boxes, int bottomIndex, int[] cache){
+        if(cache[bottomIndex] > 0)//Already Computed
+            return cache[bottomIndex];
+
+        Box bottomBox = boxes[bottomIndex];
+        int maxHeight = 0;
+        for(int i = bottomIndex+1; i < boxes.length; i++){
+            if(canBeOnTop(bottomBox, boxes[i])){
+                int height = stackOfBoxes1(boxes, i, cache);
+                maxHeight = Math.max(maxHeight, height);
+            }
+        }
+        maxHeight += bottomBox.height;
+        cache[bottomIndex] = maxHeight;
+
+        return maxHeight;
+    }
+
 }
