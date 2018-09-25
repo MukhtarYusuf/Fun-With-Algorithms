@@ -676,4 +676,38 @@ public class MainActivity extends AppCompatActivity {
         return maxHeight;
     }
 
+    public int booleanEval(String s, boolean result){
+        if(s.length() == 0) return 0;
+        if(s.length() == 1)
+            return boolFromString(s) == result ? 1 : 0;
+
+        int totalResult = 0;
+        for(int i = 1; i < s.length(); i+=2){
+            char c = s.charAt(i);
+            String left = s.substring(0, i);
+            String right = s.substring(i+1, s.length());
+            int leftTrue = booleanEval(left, true);
+            int leftFalse = booleanEval(left, false);
+            int rightTrue = booleanEval(right, true);
+            int rightFalse = booleanEval(right, false);
+            int total = (leftTrue + leftFalse) * (rightTrue + rightFalse);
+
+            int totalTrue = 0;
+            if(c == '&'){
+                totalTrue = leftTrue * rightTrue;
+            }else if(c == '|'){
+                totalTrue = (leftTrue * rightFalse) + (leftFalse * rightTrue) + (leftTrue * rightTrue);
+            }else if(c == '^'){
+                totalTrue = (leftTrue * rightFalse) + (leftFalse * rightTrue);
+            }
+            int subResult = result ? totalTrue : total-totalTrue;
+            totalResult += subResult;
+        }
+        return totalResult;
+    }
+
+    public boolean boolFromString(String s){
+        return s.equals("1");
+    }
+
 }
