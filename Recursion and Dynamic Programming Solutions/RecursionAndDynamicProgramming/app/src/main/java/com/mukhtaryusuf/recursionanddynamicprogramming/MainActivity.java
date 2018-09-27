@@ -710,4 +710,37 @@ public class MainActivity extends AppCompatActivity {
         return s.equals("1");
     }
 
+    public int booleanEval1(String s, boolean result, HashMap<String, Integer> cache){
+        if(s.length() == 0) return 0;
+        if(s.length() == 1)
+            return boolFromString(s) == result ? 1 : 0;
+
+        String key = s + result;
+        if(cache.containsKey(key))
+            return cache.get(key);
+        int totalResult = 0;
+        for(int i = 1; i < s.length(); i+=2){
+            String left = s.substring(0, i);
+            String right = s.substring(i+1, s.length());
+            char c = s.charAt(i);
+            int leftTrue = booleanEval1(left, true, cache);
+            int leftFalse = booleanEval1(left, false, cache);
+            int rightTrue = booleanEval1(right, true, cache);
+            int rightFalse = booleanEval1(right, false, cache);
+            int total = (leftTrue + leftFalse) * (rightTrue + rightFalse);
+
+            int totalTrue = 0;
+            if(c == '&'){
+                totalTrue = leftTrue * rightTrue;
+            }else if(c == '|'){
+                totalTrue = (leftTrue * rightFalse) + (leftFalse * rightTrue) + (leftTrue * rightTrue);
+            }else if(c == '^'){
+                totalTrue = (leftTrue * rightFalse) + (leftFalse * rightTrue);
+            }
+            int subResult = result ? totalTrue : total - totalTrue;
+            totalResult += subResult;
+        }
+        cache.put(key, totalResult);
+        return totalResult;
+    }
 }
