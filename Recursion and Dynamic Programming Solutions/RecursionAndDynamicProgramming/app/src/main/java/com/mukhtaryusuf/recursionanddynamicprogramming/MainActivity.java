@@ -56,6 +56,24 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println("----------Place Queens Result----------");
         placeQueens();
+
+        String expression = "0&0&0&1^1|0";
+        System.out.println("----------Boolean Evaluation Result----------");
+        System.out.println(booleanEval(expression, true));
+        System.out.println(myBooleanEval(expression, true));
+
+//        String[] operands = {"0","1"};
+//        for(int i = 0; i < operands.length; i++){
+//            for(int j = 0; j < operands.length; j++){
+//                String expression1 = operands[i] + "&" + operands[j];
+//                String expression2 = operands[i] + "|" + operands[j];
+//                String expression3 = operands[i] + "^" + operands[j];
+//
+//                eval(expression1);
+//                eval(expression2);
+//                eval(expression3);
+//            }
+//        }
     }
 
     public void printList(ArrayList<Point> pList){
