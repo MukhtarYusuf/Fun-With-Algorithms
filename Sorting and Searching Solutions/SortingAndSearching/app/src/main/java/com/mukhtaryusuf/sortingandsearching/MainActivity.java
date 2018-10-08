@@ -32,6 +32,33 @@ public class MainActivity extends AppCompatActivity {
         while(bPtr >= 0)
             a[index--] = b[bPtr--];
     }
+
+    /*
+    Problem 2: Group Anagrams
+     */
+
+    //Solution: Sorting with HashMap
+    public void groupAnagrams(String[] words){
+        if(words == null || words.length == 0)
+            return;
+        HashMap<String, ArrayList<String>> result = new HashMap<>();
+        for(int i = 0; i < words.length; i++){
+            String s = words[i];
+            char[] charString = s.toCharArray();
+            Arrays.sort(charString);
+            String sortedString = String.copyValueOf(charString);
+            if(!result.containsKey(sortedString))
+                result.put(sortedString, new ArrayList<String>());
+            (result.get(sortedString)).add(s);
+        }
+        int i = 0;
+        for(String s : result.keySet()){
+            ArrayList<String> anagrams = result.get(s);
+            for(String anagram : anagrams)
+                words[i++] = anagram;
+        }
+    }
+
     }
     //Bubble Sort
     public void bubbleSort(int[] array){
