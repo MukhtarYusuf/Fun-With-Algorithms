@@ -59,6 +59,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /*
+    Problem 3: Search in Rotated Array
+     */
+
+    //Solution 1: Binary Search to find pivot and Element. Time: O(logn), Space: O(1). Works on Array Without Duplicates
+    public int binRotatedSearch(int[] array, int key){
+        if(array == null || array.length == 0)
+            return -1;
+        int pivot = indexBinarySearch(array);
+        if(key > array[array.length-1])
+            return binarySearch(array, 0, pivot-1, key);
+        else
+            return binarySearch(array, pivot, array.length-1, key);
+    }
+
     }
     //Bubble Sort
     public void bubbleSort(int[] array){
