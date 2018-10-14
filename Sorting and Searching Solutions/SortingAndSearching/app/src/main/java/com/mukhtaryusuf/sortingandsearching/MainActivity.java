@@ -88,6 +88,20 @@ public class MainActivity extends AppCompatActivity {
         return lower;
     }
 
+    public int binarySearch(int[] array, int lower, int upper, int key){
+        int mid = 0;
+        while(lower <= upper){
+            mid = (lower + upper)/2;
+            if(array[mid] == key)
+                return mid;
+            else if(array[mid] > key)
+                upper = mid - 1;
+            else
+                lower = mid + 1;
+        }
+        return -1;
+    }
+
     }
     //Bubble Sort
     public void bubbleSort(int[] array){
