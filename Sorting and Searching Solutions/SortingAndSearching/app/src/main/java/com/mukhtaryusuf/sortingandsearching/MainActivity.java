@@ -74,6 +74,20 @@ public class MainActivity extends AppCompatActivity {
             return binarySearch(array, pivot, array.length-1, key);
     }
 
+    public int indexBinarySearch(int[] array){
+        int lower = 0;
+        int upper = array.length-1;
+        int mid = 0;
+        while(lower < upper){
+            mid = (lower + upper)/2;
+            if(array[mid] < array[array.length-1])
+                upper = mid;
+            else
+                lower = mid + 1;
+        }
+        return lower;
+    }
+
     }
     //Bubble Sort
     public void bubbleSort(int[] array){
