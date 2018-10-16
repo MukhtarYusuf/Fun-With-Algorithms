@@ -102,6 +102,43 @@ public class MainActivity extends AppCompatActivity {
         return -1;
     }
 
+    //Solution 2: Recursive Modified Binary Search. Works on Array With Duplicates. Time: O(logn), Space: O(logn)
+    public int rotatedBinSearch(int[] array, int key){
+        if(array == null || array.length == 0)
+            return -1;
+        return rotatedBinSearch(array, 0, array.length-1, key);
+    }
+
+    public int rotatedBinSearch(int[] array, int lower, int upper, int key){
+        if(lower > upper)
+            return -1;
+        int mid = (lower + upper)/2;
+        if(array[mid] == key)
+            return mid;
+
+        if(array[mid] < array[lower]){
+            if(array[mid] < key && key <= array[upper])
+                return rotatedBinSearch(array, mid+1, upper, key);
+            else
+                return rotatedBinSearch(array, lower, mid-1, key);
+        }else if(array[mid] > lower){
+            if(array[lower] <= key && key < array[mid])
+                return rotatedBinSearch(array, lower, mid-1, key);
+            else
+                return rotatedBinSearch(array, mid+1, upper, key);
+        }else if(array[mid] == array[lower]){
+            if(array[mid] != array[upper])
+                return rotatedBinSearch(array, mid+1, upper, key);
+            else{
+                int result = rotatedBinSearch(array, lower, mid-1, key);
+                if(result == -1)
+                    result = rotatedBinSearch(array, mid+1, upper, key);
+                return result;
+            }
+        }
+        return -1;
+    }
+
     }
     //Bubble Sort
     public void bubbleSort(int[] array){
