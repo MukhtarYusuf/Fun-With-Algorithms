@@ -139,6 +139,25 @@ public class MainActivity extends AppCompatActivity {
         return -1;
     }
 
+    /*
+    Problem 4: Sorted Search, No Size
+     */
+
+    //Solution 1: Find Range by exponential increase of upper, and update of lower. Then do binarySearch() of range.
+    //Time: O(logn), Space: O(1)
+    public int searchNoSize(Listy listy, int key){
+        if(listy == null)
+            return -1;
+        int lower = 0; int upper = 1;
+        int value = listy.elementAt(upper);
+        while(value != -1 && value < key){
+            lower = upper;
+            upper *= 2;
+            value = listy.elementAt(upper);
+        }
+        return binarySearch(listy, lower, upper, key);
+    }
+
     }
     //Bubble Sort
     public void bubbleSort(int[] array){
