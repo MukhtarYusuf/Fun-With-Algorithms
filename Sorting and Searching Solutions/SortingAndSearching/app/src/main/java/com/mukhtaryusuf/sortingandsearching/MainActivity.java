@@ -158,6 +158,21 @@ public class MainActivity extends AppCompatActivity {
         return binarySearch(listy, lower, upper, key);
     }
 
+    public int binarySearch(Listy listy, int lower, int upper, int key){
+        int mid = 0;
+        while(lower <= upper){
+            mid = (lower + upper)/2;
+            int midValue = listy.elementAt(mid);
+            if(midValue == key)
+                return mid;
+            else if(midValue == -1 || midValue > key)
+                upper = mid - 1;
+            else
+                lower = mid + 1;
+        }
+        return -1;
+    }
+
     }
     //Bubble Sort
     public void bubbleSort(int[] array){
