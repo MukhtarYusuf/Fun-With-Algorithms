@@ -173,6 +173,33 @@ public class MainActivity extends AppCompatActivity {
         return -1;
     }
 
+    /*
+    Problem 5: Sparse Search
+     */
+
+    //Solution: Modified Binary Search. Time(Best/Average): O(logn), Time(Worst): O(n), Space: O(1)
+    public int sparseSearch(String[] strings, String key){
+        if(strings == null || strings.length == 0)
+            return -1;
+        int lower = 0; int upper = strings.length-1;
+        int mid = 0;
+        while(lower <= upper){
+            mid = (lower + upper)/2;
+            String midString = strings[mid];
+            if(midString.isEmpty()){
+                mid = findNearest(strings, mid, lower, upper);
+                if(mid == -1)
+                    return -1;
+            }else{
+                if(midString.equals(key))
+                    return mid;
+                else if(midString.compareTo(key) < 0)
+                    lower = mid + 1;
+                else
+                    upper = mid - 1;
+            }
+        }
+        return -1;
     }
     //Bubble Sort
     public void bubbleSort(int[] array){
