@@ -201,6 +201,20 @@ public class MainActivity extends AppCompatActivity {
         }
         return -1;
     }
+    public int findNearest(String[] strings, int mid, int lower, int upper){
+        int left = mid - 1;
+        int right = mid + 1;
+        while(lower <= left || upper >= right){
+            if(lower <= left && !strings[left].isEmpty())
+                return left;
+            if(upper >= right && !strings[right].isEmpty())
+                return right;
+            left--;
+            right++;
+        }
+        return -1;
+    }
+
     //Bubble Sort
     public void bubbleSort(int[] array){
         if(array == null || array.length <=1)
