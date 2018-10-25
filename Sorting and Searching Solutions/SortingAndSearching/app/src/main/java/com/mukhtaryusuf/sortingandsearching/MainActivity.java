@@ -229,4 +229,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Selection Sort
+    public void selectionSort(int[] array){
+        if(array == null || array.length <= 1)
+            return;
+
+        int n = array.length;
+        for(int i = 0; i < n-1; i++){
+            int minIndex = i;
+            for(int j = i+1; j < n; j++){
+                if(array[j] < array[minIndex])
+                    minIndex = j;
+            }
+            swap(array, i, minIndex);
+        }
+    }
+
 }
