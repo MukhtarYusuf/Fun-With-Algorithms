@@ -245,4 +245,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //Quick Sort
+    public void quickSort(int[] array, int lower, int upper){
+        if(lower < upper){
+            int index = partition(array, lower, upper);
+            quickSort(array, lower, index-1);
+            quickSort(array, index+1, upper);
+        }
+    }
+
 }
