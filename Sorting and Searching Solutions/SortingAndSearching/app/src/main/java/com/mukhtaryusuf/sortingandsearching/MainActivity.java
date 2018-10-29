@@ -254,4 +254,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public int partition(int[] array, int lower, int upper){
+        int pivot = array[upper];
+        int tail = 0;
+        for(int i = 0; i < upper; i++){
+            if(array[i] <= pivot) {
+                swap(array, tail, array[i]);
+                tail++;
+            }
+        }
+        swap(array, tail, upper);
+        return tail;
+    }
+
 }
