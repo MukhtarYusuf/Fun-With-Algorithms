@@ -215,6 +215,14 @@ public class MainActivity extends AppCompatActivity {
         return -1;
     }
 
+    /*
+    Problem 6: Sort Big File - Imagine you have a 20GB file with one String per line. Explain how you would sort the file
+     */
+
+    //Solution 1: Use quickSort() because it doesn't require additional memory
+    //Solution 2: Divide the file into xMB chunks, where x is the available memory. We sort each chunk, then merge
+    //              them back one by one.
+
     //Bubble Sort
     public void bubbleSort(int[] array){
         if(array == null || array.length <=1)
