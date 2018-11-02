@@ -11,6 +11,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        int[] data = {15, 16, 19, 20, 25, 1, 3, 4, 5, 7, 10, 14};
+        int[] data1 = {1, 2, 3, 4, 5, 6, 7};
+        int keyElement = 20;
+        System.out.println("----------Testing Rotated Binary Search----------");
+        System.out.println("Searching: " + Arrays.toString(data) + " for: " + keyElement);
+        System.out.println("Result: " + rotatedBinSearch(data, keyElement));
+    }
+
     /*
     Problem 1: Sorted Merge
      */
