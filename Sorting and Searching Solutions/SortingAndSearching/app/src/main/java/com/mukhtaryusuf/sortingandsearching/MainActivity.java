@@ -16,10 +16,17 @@ public class MainActivity extends AppCompatActivity {
 
         int[] data = {15, 16, 19, 20, 25, 1, 3, 4, 5, 7, 10, 14};
         int[] data1 = {1, 2, 3, 4, 5, 6, 7};
-        int keyElement = 20;
+        int keyElement = 5;
         System.out.println("----------Testing Rotated Binary Search----------");
         System.out.println("Searching: " + Arrays.toString(data) + " for: " + keyElement);
         System.out.println("Result: " + rotatedBinSearch(data, keyElement));
+
+        Listy listy = new Listy();
+        int key = 101;
+
+        System.out.println("----------Testing Listy Search----------");
+        System.out.println("Searching: " + listy.toString() + " for: " + key);
+        System.out.println("Result: " + searchNoSize(listy, key));
     }
 
     /*
