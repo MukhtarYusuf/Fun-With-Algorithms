@@ -241,6 +241,24 @@ public class MainActivity extends AppCompatActivity {
     //Solution 2: Divide the file into xMB chunks, where x is the available memory. We sort each chunk, then merge
     //              them back one by one.
 
+    /*
+    Problem 9: Sorted Matrix Search
+     */
+
+    //Solution 1: Works on fully ordered matrix where the start of a new row is greater than the end of previous row
+    //              Time: O(log(m)log(n)), Space: O(1)
+    public boolean sortedMatrixSearch(int[][] mat, int key){
+        if(mat == null || mat.length == 0)
+            return false;
+        int rowIndex = rowSearch(mat, key);
+        if(rowIndex == -1)
+            return false;
+        int columnIndex = colSearch(mat[rowIndex], key);
+        if(columnIndex == -1)
+            return false;
+        return true;
+    }
+
     //Bubble Sort
     public void bubbleSort(int[] array){
         if(array == null || array.length <=1)
