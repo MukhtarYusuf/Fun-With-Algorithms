@@ -275,6 +275,22 @@ public class MainActivity extends AppCompatActivity {
         return -1;
     }
 
+    public int colSearch(int[] array, int key){
+        int lower = 0;
+        int upper = array.length-1;
+        int mid = 0;
+        while(lower <= upper){
+            mid = (lower + upper)/2;
+            if(key < array[mid])
+                upper = mid - 1;
+            else if(key > array[mid])
+                lower = mid + 1;
+            else
+                return mid;
+        }
+        return -1;
+    }
+
     //Bubble Sort
     public void bubbleSort(int[] array){
         if(array == null || array.length <=1)
