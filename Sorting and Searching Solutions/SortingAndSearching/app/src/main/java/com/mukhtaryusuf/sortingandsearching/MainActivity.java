@@ -291,6 +291,24 @@ public class MainActivity extends AppCompatActivity {
         return -1;
     }
 
+    //Solution 2: Works on ordered matrix where start of row might not be greater than end of previous row
+    //          Time: O(m+n), Space: O(1)
+    public boolean sortedMatrixSearch1(int[][] mat, int key){
+        if(mat == null || mat.length == 0)
+            return false;
+        int row = 0;
+        int col = mat[0].length-1;
+        while(row < mat.length && col >= 0){
+            if(mat[row][col] == key)
+                return true;
+            else if(mat[row][col] > key)
+                col--;
+            else
+                row++;
+        }
+        return false;
+    }
+
     //Bubble Sort
     public void bubbleSort(int[] array){
         if(array == null || array.length <=1)
