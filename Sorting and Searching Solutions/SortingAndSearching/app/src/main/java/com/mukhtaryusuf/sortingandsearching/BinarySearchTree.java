@@ -14,3 +14,10 @@ public class BinarySearchTree {
             root.insert(data);
     }
 
+    public int getRank(int data){
+        if(root == null)
+            return -1;
+        else
+            return root.getRank(data);
+    }
+}
