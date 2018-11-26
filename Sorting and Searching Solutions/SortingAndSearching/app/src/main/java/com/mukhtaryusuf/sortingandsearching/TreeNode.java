@@ -25,4 +25,24 @@ public class TreeNode {
         }
     }
 
+    public int getRank(int data){
+        if(data == val)
+            return leftSize;
+        else if(data < val){
+            if(left == null)
+                return -1;
+            else
+                return left.getRank(data);
+        }else{
+            if(right == null)
+                return -1;
+            else{
+                int rightResult = right.getRank(data);
+                if(rightResult == -1)
+                    return -1;
+                else
+                    return leftSize + 1 + rightResult;
+            }
+        }
+    }
 }
